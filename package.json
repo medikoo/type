@@ -10,7 +10,7 @@
 	"repository": "medikoo/type",
 	"devDependencies": {
 		"eslint": "^5.15.3",
-		"eslint-config-medikoo": "^2.1.1",
+		"eslint-config-medikoo-es3": "^2.0.0",
 		"git-list-updated": "^1.1.2",
 		"husky": "^1.3.1",
 		"lint-staged": "^8.1.5",
@@ -30,7 +30,7 @@
 		]
 	},
 	"eslintConfig": {
-		"extends": "medikoo",
+		"extends": "medikoo-es3",
 		"root": true
 	},
 	"scripts": {
