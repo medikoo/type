@@ -35,6 +35,18 @@ stringCoerce(12); // "12"
 stringCoerce(undefined); // null
 ```
 
+##### `string/ensure`
+
+If given argument is a string coercible value, returns string representation.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureString = require("type/string/ensure");
+
+ensureString(12); // "12"
+ensureString(null); // Thrown TypeError: null is not a string
+```
+
 #### Value
 
 _Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` (_the only primitives which are not accompanied with object representation. Hence any property access on them (as e.g. `null.foo`) results with an exception_)
