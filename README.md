@@ -20,6 +20,19 @@ isObject(true); // false
 isObject(null); // false
 ```
 
+##### `object/ensure`
+
+If given argument is an object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureObject = require("type/object/ensure");
+
+const obj = {};
+
+ensureObject(obj); // obj
+ensureString(null); // Thrown TypeError: null is not an object
+```
+
 #### String
 
 _string_ primitives
