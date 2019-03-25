@@ -6,12 +6,6 @@
 
 ## Runtime validation and processing of JavaScript types
 
-### Installation
-
-```sh
-npm install type
-```
-
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value
