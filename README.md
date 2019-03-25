@@ -22,6 +22,21 @@ isObject(true); // false
 isObject(null); // false
 ```
 
+#### String
+
+_string_ primitives
+
+##### `string/coerce`
+
+Restricted string coercion. Returns `null` for non-values or non implicitly coercible (to string) values
+
+```javascript
+const stringCoerce = require("type/string/coerce");
+
+stringCoerce(12); // "12"
+stringCoerce(undefined); // null
+```
+
 #### Value
 
 _Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` (_the only primitives which are not accompanied with object representation. Hence any property access on them (as e.g. `null.foo`) results with an exception_)

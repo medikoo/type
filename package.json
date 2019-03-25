@@ -39,6 +39,15 @@
 				"files": "test/**/*.js",
 				"env": {
 					"mocha": true
+				},
+				"rules": {
+					"no-new-wrappers": "off"
+				}
+			},
+			{
+				"files": "string/coerce.js",
+				"rules": {
+					"no-implicit-coercion": "off"
 				}
 			}
 		]
