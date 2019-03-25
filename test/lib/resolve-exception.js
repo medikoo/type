@@ -15,7 +15,7 @@ describe("lib/handle-exception", function () {
 	});
 	it("Should resolve value in default message", function () {
 		try {
-			handleException(12, "%v is invalid");
+			handleException(12, "%v is invalid", {});
 			throw new Error("Unexpected");
 		} catch (error) {
 			assert.equal(error.message, "12 is invalid");

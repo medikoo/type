@@ -31,7 +31,7 @@ describe("lib/to-short-string", function () {
 	});
 
 	it("Should replace new line characters", function () {
-		assert.equal(toShortString("foo\n\rbar"), "foo\\n\\rbar");
+		assert.equal(toShortString("foo\n\r\u2028\u2029bar"), "foo\\n\\r\\u2028\\u2029bar");
 	});
 	it("Should truncate long string", function () {
 		var str = Math.random().toString(36);
