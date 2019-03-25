@@ -6,31 +6,32 @@
 
 ## Runtime validation and processing of JavaScript types
 
-#### Object
+#### Value
 
-_Object_ is assumed to be any non-primitive JavaScript value
+_Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` .
 
-##### `object/is`
+##### `value/is`
+
+Confirms whether passed argument is a _value_
 
 ```javascript
-const isObject = require("type/object/is");
+const isValue = require("type/value/is");
 
-isObject({}); // true
-isObject(true); // false
-isObject(null); // false
+isValue({}); // true
+isValue(null); // false
 ```
 
-##### `object/ensure`
+##### `value/ensure`
 
-If given argument is an object, it is returned back. Otherwise `TypeError` is thrown.
+Ensures if given argument is a _value_. If it's a value it is returned back, if not `TypeError` is thrown
 
 ```javascript
-const ensureObject = require("type/object/ensure");
+const ensureValue = require("type/value/ensure");
 
 const obj = {};
 
-ensureObject(obj); // obj
-ensureString(null); // Thrown TypeError: null is not an object
+ensureValue(obj); // obj
+ensureValue(null); // Thrown TypeError: Cannot use null
 ```
 
 #### String
@@ -60,34 +61,31 @@ ensureString(12); // "12"
 ensureString(null); // Thrown TypeError: null is not a string
 ```
 
-#### Value
+#### Object
 
-_Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` (_the only primitives which are not accompanied with object representation. Hence any property access on them (as e.g. `null.foo`) results with an exception_)
+_Object_ is assumed to be any non-primitive JavaScript value
 
-`undefined` usually means that given variable or property was never defined, while `null` reflects declared intention of having given property or variable empty.
-
-##### `value/is`
-
-Confirms whether passed argument is a _value_
+##### `object/is`
 
 ```javascript
-const isValue = require("type/value/is");
+const isObject = require("type/object/is");
 
-isValue({}); // true
-isValue(null); // false
+isObject({}); // true
+isObject(true); // false
+isObject(null); // false
 ```
 
-##### `value/ensure`
+##### `object/ensure`
 
-Ensures if given argument is a _value_. If it's a value it is returned back, if not `TypeError` is thrown
+If given argument is an object, it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
-const ensureValue = require("type/value/ensure");
+const ensureObject = require("type/object/ensure");
 
 const obj = {};
 
-ensureValue(obj); // obj
-ensureValue(null); // Thrown TypeError: Cannot use null
+ensureObject(obj); // obj
+ensureString(null); // Thrown TypeError: null is not an object
 ```
 
 ### Tests
