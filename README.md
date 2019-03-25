@@ -1,3 +1,7 @@
+[![*nix build status][nix-build-image]][nix-build-url]
+[![Windows build status][win-build-image]][win-build-url]
+[![Tests coverage][cov-image]][cov-url]
+
 # type
 
 ## Runtime validation and processing of JavaScript types
@@ -66,3 +70,14 @@ const obj = {};
 ensureValue(obj); // obj
 ensureValue(null); // Thrown TypeError: Cannot use null
 ```
+
+### Tests
+
+    $ npm test
+
+[nix-build-image]: https://semaphoreci.com/api/v1/medikoo-org/type/branches/master/shields_badge.svg
+[nix-build-url]: https://semaphoreci.com/medikoo-org/type
+[win-build-image]: https://ci.appveyor.com/api/projects/status/8nrtluuwsb5k9l8d?svg=true
+[win-build-url]: https://ci.appveyor.com/api/project/medikoo/type
+[cov-image]: https://img.shields.io/codecov/c/github/medikoo/type.svg
+[cov-url]: https://codecov.io/gh/medikoo/type
