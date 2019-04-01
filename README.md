@@ -51,7 +51,7 @@ stringCoerce(undefined); // null
 
 ##### `string/ensure`
 
-If given argument is a string coercible value, returns string representation.
+If given argument is a string coercible value, returns result string.
 Otherwise `TypeError` is thrown.
 
 ```javascript
