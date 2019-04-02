@@ -40,7 +40,13 @@ _string_ primitives
 
 ##### `string/coerce`
 
-Restricted string coercion. Returns `null` for non-values or non implicitly coercible (to string) values
+Restricted string coercion. Returns string presentation for every value that follows below constraints
+
+-   is implicitly coercible to string
+-   is neither`null` nor `undefined`
+-   its `toString` method is not `Object.prototype.toString`
+
+For all other values `null` is returned
 
 ```javascript
 const stringCoerce = require("type/string/coerce");
@@ -51,7 +57,7 @@ stringCoerce(undefined); // null
 
 ##### `string/ensure`
 
-If given argument is a string coercible value, returns result string.
+If given argument is a string coercible value (via [`string/coerce`](#stringcoerce)) returns result string.
 Otherwise `TypeError` is thrown.
 
 ```javascript
