@@ -15,6 +15,14 @@ describe("string/coerce", function () {
 			stringCoerce({ toString: function () { return "Some object"; } }), "Some object"
 		);
 	});
+	if (typeof Object.create === "function") {
+		it("Should not coerce objects with no toString", function () {
+			assert.equal(stringCoerce(Object.create(null)), null);
+		});
+	}
+	it("Should not coerce objects with no custom toString", function () {
+		assert.equal(stringCoerce({}), null);
+	});
 	it("Should not coerce null", function () { assert.equal(stringCoerce(null), null); });
 	it("Should not coerce undefined", function () { assert.equal(stringCoerce(undefined), null); });
 
