@@ -94,6 +94,20 @@ ensureObject(obj); // obj
 ensureString(null); // Thrown TypeError: null is not an object
 ```
 
+#### Prototype
+
+_Prototype_ is assumed to be some constructor's `prototype` property
+
+##### `prototype/is`
+
+```javascript
+const isPrototype = require("type/prototype/is");
+
+isPrototype({}); // false
+isPrototype(Object.prototype); // true
+isPrototype(Array.prototype); // true
+```
+
 ### Tests
 
     $ npm test
