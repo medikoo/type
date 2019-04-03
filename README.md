@@ -108,6 +108,20 @@ isPrototype(Object.prototype); // true
 isPrototype(Array.prototype); // true
 ```
 
+#### RegExp
+
+A JavaScript _RegExp_ instance
+
+##### `reg-exp/is`
+
+```javascript
+const isRegExp = require("type/reg-exp/is");
+
+isRegExp(/foo/);
+isRegExp({}); // false
+isRegExp("foo"); // false
+```
+
 ### Tests
 
     $ npm test
