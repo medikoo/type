@@ -6,11 +6,11 @@
 
 ## Runtime validation and processing of JavaScript types
 
-#### Value
+### Value
 
 _Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` .
 
-##### `value/is`
+#### `value/is`
 
 Confirms whether passed argument is a _value_
 
@@ -21,7 +21,7 @@ isValue({}); // true
 isValue(null); // false
 ```
 
-##### `value/ensure`
+#### `value/ensure`
 
 Ensures if given argument is a _value_. If it's a value it is returned back, if not `TypeError` is thrown
 
@@ -34,11 +34,42 @@ ensureValue(obj); // obj
 ensureValue(null); // Thrown TypeError: Cannot use null
 ```
 
-#### String
+---
+
+### Object
+
+_Object_ is assumed to be any non-primitive JavaScript value
+
+#### `object/is`
+
+```javascript
+const isObject = require("type/object/is");
+
+isObject({}); // true
+isObject(true); // false
+isObject(null); // false
+```
+
+#### `object/ensure`
+
+If given argument is an object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureObject = require("type/object/ensure");
+
+const obj = {};
+
+ensureObject(obj); // obj
+ensureString(null); // Thrown TypeError: null is not an object
+```
+
+---
+
+### String
 
 _string_ primitives
 
-##### `string/coerce`
+#### `string/coerce`
 
 Restricted string coercion. Returns string presentation for every value that follows below constraints
 
@@ -55,7 +86,7 @@ coerceToString(12); // "12"
 coerceToString(undefined); // null
 ```
 
-##### `string/ensure`
+#### `string/ensure`
 
 If given argument is a string coercible value (via [`string/coerce`](#stringcoerce)) returns result string.
 Otherwise `TypeError` is thrown.
@@ -67,11 +98,13 @@ ensureString(12); // "12"
 ensureString(null); // Thrown TypeError: null is not a string
 ```
 
-#### Number
+---
+
+### Number
 
 _number_ primitives
 
-##### `number/coerce`
+#### `number/coerce`
 
 Restricted number coercion. Returns number presentation for every value that follows below constraints
 
@@ -89,7 +122,7 @@ coerceToNumber({}); // null
 coerceToNumber(null); // null
 ```
 
-##### `number/ensure`
+#### `number/ensure`
 
 If given argument is a number coercible value (via [`number/coerce`](#numbercoerce)) returns result number.
 Otherwise `TypeError` is thrown.
@@ -100,6 +133,8 @@ const ensureNumber = require("type/number/ensure");
 ensureNumber(12); // "12"
 ensureNumber(null); // Thrown TypeError: null is not a number
 ```
+
+---
 
 #### Finite Number
 
@@ -127,6 +162,8 @@ ensureFinite(12); // "12"
 ensureFinite(null); // Thrown TypeError: null is not a number
 ```
 
+---
+
 #### Integer Number
 
 ##### `integer/coerce`
@@ -153,52 +190,13 @@ ensureInteger(12.93); // "12"
 ensureInteger(null); // Thrown TypeError: null is not a number
 ```
 
-#### Object
+---
 
-_Object_ is assumed to be any non-primitive JavaScript value
-
-##### `object/is`
-
-```javascript
-const isObject = require("type/object/is");
-
-isObject({}); // true
-isObject(true); // false
-isObject(null); // false
-```
-
-##### `object/ensure`
-
-If given argument is an object, it is returned back. Otherwise `TypeError` is thrown.
-
-```javascript
-const ensureObject = require("type/object/ensure");
-
-const obj = {};
-
-ensureObject(obj); // obj
-ensureString(null); // Thrown TypeError: null is not an object
-```
-
-#### Prototype
-
-_Prototype_ is assumed to be some constructor's `prototype` property
-
-##### `prototype/is`
-
-```javascript
-const isPrototype = require("type/prototype/is");
-
-isPrototype({}); // false
-isPrototype(Object.prototype); // true
-isPrototype(Array.prototype); // true
-```
-
-#### Array
+### Array
 
 The JavaScript _Array_ instance
 
-##### `array/is`
+#### `array/is`
 
 ```javascript
 const isArray = require("type/array/is");
@@ -208,7 +206,7 @@ isArray({}); // false
 isArray("foo"); // false
 ```
 
-##### `array/ensure`
+#### `array/ensure`
 
 If given argument is an array, it is returned back. Otherwise `TypeError` is thrown.
 
@@ -219,11 +217,13 @@ ensureArray(["foo"]); // ["foo"]
 ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
 ```
 
-#### Date
+---
+
+### Date
 
 The JavaScript _Date_ instance
 
-##### `date/is`
+#### `date/is`
 
 ```javascript
 const isDate = require("type/date/is");
@@ -234,7 +234,7 @@ isDate(Date.now()); // false
 isDate("foo"); // false
 ```
 
-##### `date/ensure`
+#### `date/ensure`
 
 If given argument is a date object, it is returned back. Otherwise `TypeError` is thrown.
 
@@ -246,11 +246,13 @@ ensureDate(date); // date
 ensureDate(123123); // Thrown TypeError: 123123 is not a date object
 ```
 
-#### RegExp
+---
+
+### RegExp
 
 The JavaScript _RegExp_ instance
 
-##### `reg-exp/is`
+#### `reg-exp/is`
 
 ```javascript
 const isRegExp = require("type/reg-exp/is");
@@ -260,7 +262,7 @@ isRegExp({}); // false
 isRegExp("foo"); // false
 ```
 
-##### `reg-exp/ensure`
+#### `reg-exp/ensure`
 
 If given argument is a regular expression object, it is returned back. Otherwise `TypeError` is thrown.
 
@@ -271,11 +273,13 @@ ensureRegExp(/foo/); // /foo/
 ensureRegExp("foo"); // Thrown TypeError: null is not a regular expression object
 ```
 
-#### Error
+---
+
+### Error
 
 The JavaScript _Error_ instance
 
-##### `error/is`
+#### `error/is`
 
 ```javascript
 const isError = require("type/error/is");
@@ -284,7 +288,7 @@ isError(new Error()); // true
 isError({ mesage: "Fake error" }); // false
 ```
 
-##### `error/ensure`
+#### `error/ensure`
 
 If given argument is an error object, it is returned back. Otherwise `TypeError` is thrown.
 
@@ -294,6 +298,22 @@ const ensureError = require("type/error/ensure");
 const someError = new Error("Some error");
 ensureError(someError); // someError
 ensureError({ mesage: "Fake error" }); // Thrown TypeError: [object Object] is not an error object
+```
+
+---
+
+### Prototype
+
+_Prototype_ is assumed to be some constructor's `prototype` property
+
+#### `prototype/is`
+
+```javascript
+const isPrototype = require("type/prototype/is");
+
+isPrototype({}); // false
+isPrototype(Object.prototype); // true
+isPrototype(Array.prototype); // true
 ```
 
 ### Tests
