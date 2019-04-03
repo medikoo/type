@@ -5,6 +5,9 @@ var assert       = require("chai").assert
 
 describe("number/coerce", function () {
 	it("Should return input number", function () { assert.equal(numberCoerce(123.123), 123.123); });
+	it("Should return input infinite number", function () {
+		assert.equal(numberCoerce(Infinity), Infinity);
+	});
 	it("Should coerce string", function () { assert.equal(numberCoerce("12"), 12); });
 	it("Should coerce booleans", function () { assert.equal(numberCoerce(true), 1); });
 	it("Should coerce number objects", function () {
