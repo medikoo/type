@@ -122,6 +122,17 @@ isArray({}); // false
 isArray("foo"); // false
 ```
 
+##### `array/ensure`
+
+If given argument is an array, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureArray = require("type/array/ensure");
+
+ensureArray(["foo"]); // ["foo"]
+ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
+```
+
 #### RegExp
 
 The JavaScript _RegExp_ instance
