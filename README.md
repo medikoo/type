@@ -198,6 +198,18 @@ isError(new Error()); // true
 isError({ mesage: "Fake error" }); // false
 ```
 
+##### `error/ensure`
+
+If given argument is an error object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureError = require("type/error/ensure");
+
+const someError = new Error("Some error");
+ensureError(someError); // someError
+ensureError({ mesage: "Fake error" }); // Thrown TypeError: [object Object] is not an error object
+```
+
 ### Tests
 
     $ npm test
