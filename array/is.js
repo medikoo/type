@@ -14,8 +14,9 @@ module.exports = function (value) {
 	if (!isArray(value)) return false;
 
 	// Sanity check (reject objects which do not expose common Array interface)
+	if (!hasOwnProperty.call(value, "length")) return false;
+	if (typeof value.length !== "number") return false;
 	if (typeof value.push !== "function") return false;
-	if (typeof value.pop !== "function") return false;
 	if (typeof value.splice !== "function") return false;
 
 	return !isPrototype(value);
