@@ -110,7 +110,7 @@ Restricted number coercion. Returns number presentation for every value that fol
 
 -   is implicitly coercible to number
 -   is neither `null` nor `undefined`
--   is not and doesn't coerce to `NaN`
+-   is not `NaN` and doesn't coerce to `NaN`
 
 For all other values `null` is returned
 
@@ -198,6 +198,8 @@ The JavaScript _Array_ instance
 
 #### `array/is`
 
+Confirms if given object is a native array
+
 ```javascript
 const isArray = require("type/array/is");
 
@@ -224,6 +226,8 @@ ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
 The JavaScript _Date_ instance
 
 #### `date/is`
+
+Confirms if given object is a native date and is not an _Invalid Date_
 
 ```javascript
 const isDate = require("type/date/is");
@@ -254,6 +258,8 @@ The JavaScript _RegExp_ instance
 
 #### `reg-exp/is`
 
+Confirms if given object is a native regular expression object
+
 ```javascript
 const isRegExp = require("type/reg-exp/is");
 
@@ -280,6 +286,8 @@ ensureRegExp("foo"); // Thrown TypeError: null is not a regular expression objec
 The JavaScript _Error_ instance
 
 #### `error/is`
+
+Confirms if given object is native error object
 
 ```javascript
 const isError = require("type/error/is");
