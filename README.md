@@ -185,6 +185,19 @@ ensureRegExp(/foo/); // /foo/
 ensureRegExp("foo"); // Thrown TypeError: null is not a regular expression object
 ```
 
+#### Error
+
+The JavaScript _Error_ instance
+
+##### `error/is`
+
+```javascript
+const isError = require("type/error/is");
+
+isError(new Error()); // true
+isError({ mesage: "Fake error" }); // false
+```
+
 ### Tests
 
     $ npm test
