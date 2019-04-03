@@ -67,6 +67,28 @@ ensureString(12); // "12"
 ensureString(null); // Thrown TypeError: null is not a string
 ```
 
+#### Number
+
+_number_ primitives
+
+##### `number/coerce`
+
+Restricted number coercion. Returns number presentation for every value that follows below constraints
+
+-   is implicitly coercible to number
+-   is neither `null` nor `undefined`
+-   is not and doesn't coerce to `NaN`
+
+For all other values `null` is returned
+
+```javascript
+const numberCoerce = require("type/number/coerce");
+
+numberCoerce("12"); // 12
+numberCoerce({}); // null
+numberCoerce(null); // null
+```
+
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value

@@ -49,7 +49,10 @@
 				}
 			},
 			{
-				"files": "string/coerce.js",
+				"files": [
+					"string/coerce.js",
+					"number/coerce.js"
+				],
 				"rules": {
 					"no-implicit-coercion": "off"
 				}
