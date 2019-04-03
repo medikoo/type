@@ -49,10 +49,10 @@ Restricted string coercion. Returns string presentation for every value that fol
 For all other values `null` is returned
 
 ```javascript
-const stringCoerce = require("type/string/coerce");
+const coerceToString = require("type/string/coerce");
 
-stringCoerce(12); // "12"
-stringCoerce(undefined); // null
+coerceToString(12); // "12"
+coerceToString(undefined); // null
 ```
 
 ##### `string/ensure`
@@ -82,11 +82,23 @@ Restricted number coercion. Returns number presentation for every value that fol
 For all other values `null` is returned
 
 ```javascript
-const numberCoerce = require("type/number/coerce");
+const coerceToNumber = require("type/number/coerce");
 
-numberCoerce("12"); // 12
-numberCoerce({}); // null
-numberCoerce(null); // null
+coerceToNumber("12"); // 12
+coerceToNumber({}); // null
+coerceToNumber(null); // null
+```
+
+##### `number/ensure`
+
+If given argument is a number coercible value (via [`number/coerce`](#numbercoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureNumber = require("type/number/ensure");
+
+ensureNumber(12); // "12"
+ensureNumber(null); // Thrown TypeError: null is not a number
 ```
 
 #### Object
