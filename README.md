@@ -141,6 +141,18 @@ coerceToInteger(Infinity); // null
 coerceToInteger(null); // null
 ```
 
+##### `integer/ensure`
+
+If given argument is an integer coercible value (via [`integer/coerce`](#integercoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureInteger = require("type/integer/ensure");
+
+ensureInteger(12.93); // "12"
+ensureInteger(null); // Thrown TypeError: null is not a number
+```
+
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value
