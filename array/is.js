@@ -6,8 +6,8 @@ var isArray;
 if (typeof Array.isArray === "function") {
 	isArray = Array.isArray;
 } else {
-	var objectToString = Object.prototype.toString, objectBaseString = objectToString.call([]);
-	isArray = function (value) { return objectToString.call(value) === objectBaseString; };
+	var objectToString = Object.prototype.toString, objectTaggedString = objectToString.call([]);
+	isArray = function (value) { return objectToString.call(value) === objectTaggedString; };
 }
 
 module.exports = function (value) {

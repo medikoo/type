@@ -4,8 +4,8 @@ var isToStringTagSupported = require("../lib/is-to-string-tag-supported")
   , isPrototype            = require("../prototype/is");
 
 var regExpTest = RegExp.prototype.test
-  , objToString = Object.prototype.toString
-  , objBaseString = objToString.call(/a/);
+  , objectToString = Object.prototype.toString
+  , objectTaggedString = objectToString.call(/a/);
 
 module.exports = function (value) {
 	if (!value) return false;
@@ -28,6 +28,6 @@ module.exports = function (value) {
 			return false;
 		}
 	}
-	if (objToString.call(value) !== objBaseString) return false;
+	if (objectToString.call(value) !== objectTaggedString) return false;
 	return !isPrototype(value);
 };
