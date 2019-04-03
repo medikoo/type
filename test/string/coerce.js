@@ -28,8 +28,7 @@ describe("string/coerce", function () {
 
 	if (typeof Symbol === "function") {
 		it("Should not coerce symbols", function () {
-			// eslint-disable-next-line no-undef
-			assert.equal(stringCoerce(Symbol()), null);
+			assert.equal(stringCoerce(Symbol("foo")), null);
 		});
 	}
 });
