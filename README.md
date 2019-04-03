@@ -108,6 +108,20 @@ isPrototype(Object.prototype); // true
 isPrototype(Array.prototype); // true
 ```
 
+#### Array
+
+The JavaScript _Array_ instance
+
+##### `array/is`
+
+```javascript
+const isArray = require("type/array/is");
+
+isArray([]); // true
+isArray({}); // false
+isArray("foo"); // false
+```
+
 #### RegExp
 
 The JavaScript _RegExp_ instance
