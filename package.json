@@ -35,6 +35,9 @@
 	"eslintConfig": {
 		"extends": "medikoo-es3",
 		"root": true,
+		"globals": {
+			"Symbol": true
+		},
 		"overrides": [
 			{
 				"files": "test/**/*.js",
