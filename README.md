@@ -110,7 +110,7 @@ isPrototype(Array.prototype); // true
 
 #### RegExp
 
-A JavaScript _RegExp_ instance
+The JavaScript _RegExp_ instance
 
 ##### `reg-exp/is`
 
