@@ -101,6 +101,20 @@ ensureNumber(12); // "12"
 ensureNumber(null); // Thrown TypeError: null is not a number
 ```
 
+#### Finite Number
+
+##### `finite/coerce`
+
+Follows [`number/coerce`](#numbercoerce) additionally rejecting `Infinity` and `-Infinity` values (`null` is returned if given values coerces to them)
+
+```javascript
+const coerceToFinite = require("type/finite/coerce");
+
+coerceToFinite("12"); // 12
+coerceToFinite(Infinity); // null
+coerceToFinite(null); // null
+```
+
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value
