@@ -127,6 +127,20 @@ ensureFinite(12); // "12"
 ensureFinite(null); // Thrown TypeError: null is not a number
 ```
 
+#### Integer Number
+
+##### `integer/coerce`
+
+Follows [`finite/coerce`](#finitecoerce) additionally stripping decimal part from the number
+
+```javascript
+const coerceToInteger = require("type/integer/coerce");
+
+coerceToInteger("12.95"); // 12
+coerceToInteger(Infinity); // null
+coerceToInteger(null); // null
+```
+
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value
