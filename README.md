@@ -287,7 +287,7 @@ The JavaScript _Error_ instance
 
 #### `error/is`
 
-Confirms if given object is native error object
+Confirms if given object is a native error object
 
 ```javascript
 const isError = require("type/error/is");
