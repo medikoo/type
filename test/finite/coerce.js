@@ -3,7 +3,7 @@
 var assert         = require("chai").assert
   , coerceToFinite = require("../../finite/coerce");
 
-describe("number/finite/coerce", function () {
+describe("finite/coerce", function () {
 	it("Should return input number", function () {
 		assert.equal(coerceToFinite(123.123), 123.123);
 	});
