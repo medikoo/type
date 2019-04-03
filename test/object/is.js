@@ -21,8 +21,7 @@ describe("object/is", function () {
 	it("Should return false on boolean", function () { assert.equal(isObject(true), false); });
 	if (typeof Symbol === "function") {
 		it("Should return false on symbol", function () {
-			// eslint-disable-next-line no-undef
-			assert.equal(isObject(Symbol()), false);
+			assert.equal(isObject(Symbol("foo")), false);
 		});
 	}
 
