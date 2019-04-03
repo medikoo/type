@@ -115,6 +115,18 @@ coerceToFinite(Infinity); // null
 coerceToFinite(null); // null
 ```
 
+##### `finite/ensure`
+
+If given argument is a finite number coercible value (via [`finite/coerce`](#finitecoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureFinite = require("type/finite/ensure");
+
+ensureFinite(12); // "12"
+ensureFinite(null); // Thrown TypeError: null is not a number
+```
+
 #### Object
 
 _Object_ is assumed to be any non-primitive JavaScript value
