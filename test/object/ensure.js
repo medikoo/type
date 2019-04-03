@@ -3,7 +3,7 @@
 var assert       = require("chai").assert
   , ensureObject = require("../../object/ensure");
 
-describe("string/ensure", function () {
+describe("object/ensure", function () {
 	it("Should return input value", function () {
 		var value = {};
 		assert.equal(ensureObject(value), value);
