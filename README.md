@@ -133,6 +133,21 @@ ensureArray(["foo"]); // ["foo"]
 ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
 ```
 
+#### Date
+
+The JavaScript _Date_ instance
+
+##### `date/is`
+
+```javascript
+const isDate = require("type/date/is");
+
+isDate(new Date()); // true
+isDate(new Date("Invalid date")); // false
+isDate(Date.now()); // false
+isDate("foo"); // false
+```
+
 #### RegExp
 
 The JavaScript _RegExp_ instance
