@@ -206,6 +206,18 @@ coerceToInteger(9007199254740992); // null
 coerceToInteger(null); // null
 ```
 
+##### `safe-integer/ensure`
+
+If given argument is a safe integer coercible value (via [`safe-integer/coerce`](#safe-integercoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureSafeInteger = require("type/safe-integer/ensure");
+
+ensureSafeInteger(12.93); // "12"
+ensureSafeInteger(9007199254740992); // Thrown TypeError: null is not a number
+```
+
 ---
 
 ### Array
