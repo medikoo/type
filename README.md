@@ -568,6 +568,18 @@ isPromise({ then: () => {} }); // false
 isPromise({}); // false
 ```
 
+##### `promise/ensure`
+
+If given argument is a promise, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensurePromise = require("type/promise/ensure");
+
+const promise = Promise.resolve();
+ensurePromise(promise); // promise
+eensurePromise({}); // Thrown TypeError: [object Object] is not a promise
+```
+
 ---
 
 #### Thenable
