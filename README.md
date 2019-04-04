@@ -401,6 +401,23 @@ ensureDate(/foo/); // Thrown TypeError: /foo/ is not a function
 
 ---
 
+#### Plain Function
+
+#### `plain-function/is`
+
+Confirms if given object is a native function and is not a class
+
+```javascript
+const isPlainFunction = require("type/plain-function/is");
+
+isPlainFunction(function () {}); // true
+isPlainFunction(() => {}); // true
+isPlainFunction(class {}); // false
+isPlainFunction("foo"); // false
+```
+
+---
+
 ### RegExp
 
 The JavaScript _RegExp_ instance
