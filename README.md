@@ -277,6 +277,28 @@ ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
 
 ---
 
+#### Array Like
+
+#### `array-like/is`
+
+Restricted _array-like_ confirmation. Returns true for every value that meets following contraints
+
+-   is an _object_, or a _string_ if `allowString` option was set
+-   is not a _function_
+-   Exposes `length` as [`array-length` coercible value](#array-lengthcoerce)
+
+```javascript
+const isArrayLike = require("type/array-like/is");
+
+isArrayLike([]); // true
+isArrayLike({}); // false
+isArrayLike({ length: 0 }); // true
+isArrayLike("foo"); // false
+isArrayLike("foo", { allowString: true }); // true
+```
+
+---
+
 #### Array length
 
 ##### `array-length/coerce`
