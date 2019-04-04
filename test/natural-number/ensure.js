@@ -3,7 +3,7 @@
 var assert              = require("chai").assert
   , ensureNaturalNumber = require("../../natural-number/ensure");
 
-describe("natural-numbe/ensure", function () {
+describe("natural-number/ensure", function () {
 	it("Should return coerced value", function () {
 		assert.equal(ensureNaturalNumber("12.23"), 12);
 	});
