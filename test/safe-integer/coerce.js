@@ -3,7 +3,7 @@
 var assert              = require("chai").assert
   , coerceToSafeInteger = require("../../safe-integer/coerce");
 
-describe("integer/coerce", function () {
+describe("safe-integer/coerce", function () {
 	it("Should coerce float to integer", function () {
 		assert.equal(coerceToSafeInteger(123.123), 123);
 		assert.equal(coerceToSafeInteger(123.823), 123);
