@@ -297,6 +297,18 @@ isArrayLike("foo"); // false
 isArrayLike("foo", { allowString: true }); // true
 ```
 
+#### `array-like/ensure`
+
+If given argument is an array like, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureArrayLike = require("type/array-like/ensure");
+
+ensureArrayLike({ length: 0 }); // { length: 0 }
+ensureArrayLike("foo", { allowString: true }); // "foo"
+ensureArrayLike({}); // Thrown TypeError: null is not a regular expression object
+```
+
 ---
 
 #### Array length
