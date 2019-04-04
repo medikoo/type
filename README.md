@@ -552,6 +552,24 @@ ensureRegExp("foo"); // Thrown TypeError: null is not a regular expression objec
 
 ---
 
+#### Thenable
+
+The JavaScript _thenable_ object (an object with `then` method)
+
+##### `thenable/is`
+
+Confirms if given object is a _thenable_
+
+```javascript
+const isThenable = require("type/thenable/is");
+
+isThenable(Promise.resolve()); // true
+isThenable({ then: () => {} }); // true
+isThenable({}); // false
+```
+
+---
+
 ### Error
 
 The JavaScript _Error_ instance
