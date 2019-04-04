@@ -370,6 +370,24 @@ ensureDate(123123); // Thrown TypeError: 123123 is not a date object
 
 ---
 
+### Time value
+
+A _time value_ that's used in dates handling
+
+#### `time-value/coerce`
+
+Follows [`integer/coerce`](#integercoerce) but returns `null` in place of values which go beyond 100 000 0000 days from unix epoch
+
+```javascript
+const coerceToTimeValue = require("type/time-value/coerce");
+
+coerceToTimeValue(12312312); // true
+coerceToTimeValue(Number.MAX_SAFE_INTEGER); // false
+coerceToTimeValue("foo"); // false
+```
+
+---
+
 ### Function
 
 The JavaScript _Function_ instance
