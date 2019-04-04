@@ -36,6 +36,8 @@
 		"extends": "medikoo-es3",
 		"root": true,
 		"globals": {
+			"Map": true,
+			"Set": true,
 			"Symbol": true
 		},
 		"overrides": [

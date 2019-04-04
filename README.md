@@ -339,6 +339,25 @@ ensureArrayLength(9007199254740992); // Thrown TypeError: null is not a valid ar
 
 ---
 
+### Iterable
+
+The JavaScript value which implements _iterable_ protocol
+
+#### `iterable/is`
+
+Confirms if given object is iterable, but default rejects _strings_, they're accepted if `allowString` option is passed
+
+```javascript
+const isIterable = require("type/iterable/is");
+
+isIterable([]); // true
+isIterable({}); // false
+isIterable("foo"); // false
+isIterable("foo", { allowString: true }); // true
+```
+
+---
+
 ### Date
 
 The JavaScript _Date_ instance
