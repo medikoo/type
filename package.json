@@ -37,6 +37,7 @@
 		"root": true,
 		"globals": {
 			"Map": true,
+			"Promise": true,
 			"Set": true,
 			"Symbol": true
 		},

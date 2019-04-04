@@ -7,6 +7,11 @@ describe("thenable/is", function () {
 	it("Should return true on object with `then` method", function () {
 		assert.equal(isThenable({ then: function () { return true; } }), true);
 	});
+	if (typeof Promise === "function") {
+		it("Should return true on promise", function () {
+			assert.equal(isThenable(Promise.resolve()), true);
+		});
+	}
 	it("Should return false on object with `then` non callable property", function () {
 		assert.equal(isThenable({ then: {} }), false);
 	});
