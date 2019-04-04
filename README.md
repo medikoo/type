@@ -267,6 +267,17 @@ isPlainObject(Object.create(null)); // true
 isPlainObject([]); // false
 ```
 
+#### `plain-object/ensure`
+
+If given argument is a plain object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensurePlainObject = require("type/plain-object/ensure");
+
+ensurePlainObject({}); // {}
+ensureArray("foo"); // Thrown TypeError: foo is not a plain object
+```
+
 ---
 
 ### Array
@@ -293,7 +304,7 @@ If given argument is an array, it is returned back. Otherwise `TypeError` is thr
 const ensureArray = require("type/array/ensure");
 
 ensureArray(["foo"]); // ["foo"]
-ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
+ensureArray("foo"); // Thrown TypeError: foo is not an array
 ```
 
 ---
