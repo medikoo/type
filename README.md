@@ -220,6 +220,22 @@ ensureSafeInteger(9007199254740992); // Thrown TypeError: null is not a number
 
 ---
 
+#### Natural Number
+
+##### `natural-number/coerce`
+
+Follows [`integer/coerce`](#integercoerce) but returns `null` in place of values which are below `0`
+
+```javascript
+const coerceToNaturalNumber = require("type/natural-number/coerce");
+
+coerceToNaturalNumber("12.95"); // 12
+coerceToNaturalNumber(-120); // null
+coerceToNaturalNumber(null); // null
+```
+
+---
+
 ### Array
 
 The JavaScript _Array_ instance
