@@ -387,6 +387,18 @@ isFunction(class {}); // true
 isFunction("foo"); // false
 ```
 
+#### `function/ensure`
+
+If given argument is a function object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureFunction = require("type/function/ensure");
+
+const fn = function () {};
+ensureDate(fn); // fn
+ensureDate(/foo/); // Thrown TypeError: /foo/ is not a function
+```
+
 ---
 
 ### RegExp
