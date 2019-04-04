@@ -192,6 +192,22 @@ ensureInteger(null); // Thrown TypeError: null is not a number
 
 ---
 
+#### Safe Integer Number
+
+##### `safe-integer/coerce`
+
+Follows [`integer/coerce`](#integercoerce) but returns `null` in place of values which are beyond `Number.MIN_SAFE_INTEGER` and `Number.MAX_SAFE_INTEGER` range.
+
+```javascript
+const coerceToSafeInteger = require("type/safe-integer/coerce");
+
+coerceToInteger("12.95"); // 12
+coerceToInteger(9007199254740992); // null
+coerceToInteger(null); // null
+```
+
+---
+
 ### Array
 
 The JavaScript _Array_ instance

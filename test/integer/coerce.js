@@ -18,6 +18,12 @@ describe("integer/coerce", function () {
 	it("Should coerce objects", function () {
 		assert.equal(coerceToInteger({ valueOf: function () { return 23; } }), 23);
 	});
+	it("Should coerce number beyond Number.MAX_SAFE_INTEGER", function () {
+		assert.equal(coerceToInteger(9007199254740992), 9007199254740992);
+	});
+	it("Should coerce number beyond Number.MIN_SAFE_INTEGER", function () {
+		assert.equal(coerceToInteger(-9007199254740992), -9007199254740992);
+	});
 
 	it("Should reject infinite number", function () {
 		assert.equal(coerceToInteger(Infinity), null);
