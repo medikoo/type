@@ -215,7 +215,7 @@ Otherwise `TypeError` is thrown.
 const ensureSafeInteger = require("type/safe-integer/ensure");
 
 ensureSafeInteger(12.93); // "12"
-ensureSafeInteger(9007199254740992); // Thrown TypeError: null is not a number
+ensureSafeInteger(9007199254740992); // Thrown TypeError: null is not a safe integer
 ```
 
 ---
@@ -232,6 +232,18 @@ const coerceToNaturalNumber = require("type/natural-number/coerce");
 coerceToNaturalNumber("12.95"); // 12
 coerceToNaturalNumber(-120); // null
 coerceToNaturalNumber(null); // null
+```
+
+##### `natural-number/ensure`
+
+If given argument is a natural number coercible value (via [`natural-number/coerce`](#natural-numbercoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureNaturalNumber = require("type/natural-number/ensure");
+
+ensureNaturalNumber(12.93); // "12"
+ensureNaturalNumber(-230); // Thrown TypeError: null is not a natural number
 ```
 
 ---
