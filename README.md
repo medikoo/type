@@ -306,7 +306,7 @@ const ensureArrayLike = require("type/array-like/ensure");
 
 ensureArrayLike({ length: 0 }); // { length: 0 }
 ensureArrayLike("foo", { allowString: true }); // "foo"
-ensureArrayLike({}); // Thrown TypeError: null is not a regular expression object
+ensureArrayLike({}); // Thrown TypeError: null is not an iterable
 ```
 
 ---
@@ -354,6 +354,18 @@ isIterable([]); // true
 isIterable({}); // false
 isIterable("foo"); // false
 isIterable("foo", { allowString: true }); // true
+```
+
+#### `iterable/ensure`
+
+If given argument is an iterable, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureIterable = require("type/iterable/ensure");
+
+ensureIterable([]); // []
+ensureIterable("foo", { allowString: true }); // "foo"
+ensureIterable({}); // Thrown TypeError: null is not a iterable
 ```
 
 ---
