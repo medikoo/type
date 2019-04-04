@@ -15,9 +15,13 @@ module.exports = function (value) {
 
 	// Sanity check (reject objects which do not expose common Array interface)
 	if (!hasOwnProperty.call(value, "length")) return false;
-	if (typeof value.length !== "number") return false;
-	if (typeof value.push !== "function") return false;
-	if (typeof value.splice !== "function") return false;
+	try {
+		if (typeof value.length !== "number") return false;
+		if (typeof value.push !== "function") return false;
+		if (typeof value.splice !== "function") return false;
+	} catch (error) {
+		return false;
+	}
 
 	return !isPrototype(value);
 };

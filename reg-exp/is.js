@@ -12,9 +12,13 @@ module.exports = function (value) {
 
 	// Sanity check (reject objects which do not expose common RegExp interface)
 	if (!hasOwnProperty.call(value, "lastIndex")) return false;
-	if (typeof value.lastIndex !== "number") return false;
-	if (typeof value.test !== "function") return false;
-	if (typeof value.exec !== "function") return false;
+	try {
+		if (typeof value.lastIndex !== "number") return false;
+		if (typeof value.test !== "function") return false;
+		if (typeof value.exec !== "function") return false;
+	} catch (error) {
+		return false;
+	}
 
 	// Ensure its native RegExp object (has [[RegExpMatcher]] slot)
 	if (isToStringTagSupported && typeof value[Symbol.toStringTag] === "string") {
