@@ -277,6 +277,22 @@ ensureArray("foo"); // Thrown TypeError: null is not a regular expression object
 
 ---
 
+#### Array length
+
+##### `array-length/coerce`
+
+Follows [`safe-integer/coerce`](#safe-integercoerce) but returns `null` in place of values which are below `0`
+
+```javascript
+const coerceToArrayLength = require("type/safe-integer/coerce");
+
+coerceToArrayLength("12.95"); // 12
+coerceToArrayLength(9007199254740992); // null
+coerceToArrayLength(null); // null
+```
+
+---
+
 ### Date
 
 The JavaScript _Date_ instance
