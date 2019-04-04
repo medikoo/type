@@ -370,6 +370,25 @@ ensureDate(123123); // Thrown TypeError: 123123 is not a date object
 
 ---
 
+### Function
+
+The JavaScript _Function_ instance
+
+#### `function/is`
+
+Confirms if given object is a native function
+
+```javascript
+const isFunction = require("type/function/is");
+
+isFunction(function () {}); // true
+isFunction(() => {}); // true
+isFunction(class {}); // true
+isFunction("foo"); // false
+```
+
+---
+
 ### RegExp
 
 The JavaScript _RegExp_ instance

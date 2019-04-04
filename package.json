@@ -45,6 +45,7 @@
 					"mocha": true
 				},
 				"rules": {
+					"no-eval": "off",
 					"no-new-wrappers": "off"
 				}
 			},
