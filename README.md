@@ -291,6 +291,18 @@ coerceToArrayLength(9007199254740992); // null
 coerceToArrayLength(null); // null
 ```
 
+##### `array-length/ensure`
+
+If given argument is a array length coercible value (via [`array-length/coerce`](#array-lengthcoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureArrayLength = require("type/array-length/ensure");
+
+ensureArrayLength(12.93); // "12"
+ensureArrayLength(9007199254740992); // Thrown TypeError: null is not a valid array length
+```
+
 ---
 
 ### Date
