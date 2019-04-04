@@ -386,6 +386,18 @@ coerceToTimeValue(Number.MAX_SAFE_INTEGER); // false
 coerceToTimeValue("foo"); // false
 ```
 
+##### `time-value/ensure`
+
+If given argument is a time value coercible value (via [`time-value/coerce`](#time-valuecoerce)) returns result number.
+Otherwise `TypeError` is thrown.
+
+```javascript
+const ensureTimeValue = require("type/time-value/ensure");
+
+ensureTimeValue(12.93); // "12"
+ensureTimeValue(Number.MAX_SAFE_INTEGER); // Thrown TypeError: null is not a natural number
+```
+
 ---
 
 ### Function
