@@ -59,6 +59,12 @@
 				"rules": {
 					"no-implicit-coercion": "off"
 				}
+			},
+			{
+				"files": "plain-object/is.js",
+				"rules": {
+					"no-proto": "off"
+				}
 			}
 		]
 	},

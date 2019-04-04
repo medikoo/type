@@ -248,6 +248,27 @@ ensureNaturalNumber(-230); // Thrown TypeError: null is not a natural number
 
 ---
 
+### Plain Object
+
+A JavaScript plain object:
+
+-   Inherits from `Object.prototype` or `null`
+-   Is not a constructor's `prototype` property
+
+#### `plain-object/is`
+
+Confirms if given object is a _plain object_
+
+```javascript
+const isPlainObject = require("type/plain-object/is");
+
+isPlainObject({}); // true
+isPlainObject(Object.create(null)); // true
+isPlainObject([]); // false
+```
+
+---
+
 ### Array
 
 The JavaScript _Array_ instance
