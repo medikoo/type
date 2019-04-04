@@ -395,15 +395,15 @@ If given argument is a function object, it is returned back. Otherwise `TypeErro
 const ensureFunction = require("type/function/ensure");
 
 const fn = function () {};
-ensureDate(fn); // fn
-ensureDate(/foo/); // Thrown TypeError: /foo/ is not a function
+ensureFunction(fn); // fn
+ensureFunction(/foo/); // Thrown TypeError: /foo/ is not a function
 ```
 
 ---
 
 #### Plain Function
 
-#### `plain-function/is`
+##### `plain-function/is`
 
 Confirms if given object is a native function and is not a class
 
@@ -414,6 +414,18 @@ isPlainFunction(function () {}); // true
 isPlainFunction(() => {}); // true
 isPlainFunction(class {}); // false
 isPlainFunction("foo"); // false
+```
+
+##### `plain-function/ensure`
+
+If given argument is a plain function object, it is returned back. Otherwise `TypeError` is thrown.
+
+```javascript
+const ensurePlainFunction = require("type/function/ensure");
+
+const fn = function () {};
+ensurePlainFunction(fn); // fn
+ensurePlainFunction(class {}); // Thrown TypeError: class is not a plain function
 ```
 
 ---
