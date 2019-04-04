@@ -3,7 +3,7 @@
 var assert        = require("chai").assert
   , ensureInteger = require("../../integer/ensure");
 
-describe("finite/ensure", function () {
+describe("integer/ensure", function () {
 	it("Should return coerced value", function () { assert.equal(ensureInteger("12.23"), 12); });
 	it("Should crash on no value", function () {
 		try {
