@@ -6,9 +6,51 @@
 
 ## Runtime validation and processing of JavaScript types
 
+-   Respects language nature and acknowledges its quirks
+-   Allows coercion in restricted forms (rejects clearly invalid input, normalizes permissible type deviations)
+-   No transpilation implied, provides support for all ECMAScript 3+ engines
+
+### Example usage
+
+Bulletproof input arguments normalizer and validator:
+
+```javascript
+const ensureString = require('type/string/ensure');
+const ensureDate = require('type/date/ensure');
+const ensureNaturalNumber = require('type/natural-number/ensure');
+const isObject = require('type/object/is');
+
+module.exports = (path, options = { min: 0 }) {
+	path = ensureString(path, { errorMessage: "%v is not a path" });
+	if (!isObject(options)) options = {};
+	const min = ensureNaturalNumber(options.min, { default: 0 });
+	const max = ensureNaturalNumber(options.max, { isOptional: true });
+	const startTime = ensureDate(options.startTime, { isOptional: true });
+
+	// ...logic
+}
+```
+
+### Installation
+
+```bash
+npm install type
+```
+
+## Utilities
+
+Serves following kind of utils:
+
+-   `coerce` - Primitive type restricted coercion. Returns coerced value or `null` if value is not coercible per rules.
+-   `is` - Object type confirmation, returns either `true` or `false`.
+-   `ensure` - Value validation. Returns input value (in primitive cases possibly coerced) or throws `TypeError` if value doesn't meet the constraints. Each `ensure*` util, accepts following options as second argument:
+    -   `isOptional` - accepts `null` or `undefined` as valid value. In such case `null` is returned.
+    -   `default` - if `null` or `undefined` is provided as input, then value passed with this option is send.
+    -   `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
+
 ### Value
 
-_Value_ is assumed to be any JavaScript value that's neither `null` nor `undefined` .
+_Value_, any value that's neither `null` nor `undefined` .
 
 #### `value/is`
 
@@ -38,9 +80,11 @@ ensureValue(null); // Thrown TypeError: Cannot use null
 
 ### Object
 
-_Object_ is assumed to be any non-primitive JavaScript value
+_Object_, any non-primitive value
 
 #### `object/is`
+
+Confirms if passed value is an object
 
 ```javascript
 const isObject = require("type/object/is");
@@ -67,7 +111,7 @@ ensureString(null); // Thrown TypeError: null is not an object
 
 ### String
 
-_string_ primitives
+_string_ primitive
 
 #### `string/coerce`
 
@@ -102,7 +146,7 @@ ensureString(null); // Thrown TypeError: null is not a string
 
 ### Number
 
-_number_ primitives
+_number_ primitive
 
 #### `number/coerce`
 
@@ -138,6 +182,8 @@ ensureNumber(null); // Thrown TypeError: null is not a number
 
 #### Finite Number
 
+Finite _number_ primitive
+
 ##### `finite/coerce`
 
 Follows [`number/coerce`](#numbercoerce) additionally rejecting `Infinity` and `-Infinity` values (`null` is returned if given values coerces to them)
@@ -165,6 +211,8 @@ ensureFinite(null); // Thrown TypeError: null is not a number
 ---
 
 #### Integer Number
+
+Integer _number_ primitive
 
 ##### `integer/coerce`
 
@@ -194,6 +242,8 @@ ensureInteger(null); // Thrown TypeError: null is not a number
 
 #### Safe Integer Number
 
+Safe integer _number_ primitive
+
 ##### `safe-integer/coerce`
 
 Follows [`integer/coerce`](#integercoerce) but returns `null` in place of values which are beyond `Number.MIN_SAFE_INTEGER` and `Number.MAX_SAFE_INTEGER` range.
@@ -222,9 +272,11 @@ ensureSafeInteger(9007199254740992); // Thrown TypeError: null is not a safe int
 
 #### Natural Number
 
+Natural _number_ primitive
+
 ##### `natural-number/coerce`
 
-Follows [`integer/coerce`](#integercoerce) but returns `null` in place of values which are below `0`
+Follows [`integer/coerce`](#integercoerce) but returns `null` for values below `0`
 
 ```javascript
 const coerceToNaturalNumber = require("type/natural-number/coerce");
@@ -250,9 +302,9 @@ ensureNaturalNumber(-230); // Thrown TypeError: null is not a natural number
 
 ### Plain Object
 
-A JavaScript plain object:
+A _plain object_
 
--   Inherits from `Object.prototype` or `null`
+-   Inherits directly from `Object.prototype` or `null`
 -   Is not a constructor's `prototype` property
 
 #### `plain-object/is`
@@ -269,7 +321,7 @@ isPlainObject([]); // false
 
 #### `plain-object/ensure`
 
-If given argument is a plain object, it is returned back. Otherwise `TypeError` is thrown.
+If given argument is a plain object it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
 const ensurePlainObject = require("type/plain-object/ensure");
@@ -282,7 +334,7 @@ ensureArray("foo"); // Thrown TypeError: foo is not a plain object
 
 ### Array
 
-The JavaScript _Array_ instance
+_Array_ instance
 
 #### `array/is`
 
@@ -311,11 +363,13 @@ ensureArray("foo"); // Thrown TypeError: foo is not an array
 
 #### Array Like
 
+Value adhering to the _array-like_ contract (a value with `length` property)
+
 #### `array-like/is`
 
 Restricted _array-like_ confirmation. Returns true for every value that meets following contraints
 
--   is an _object_, or a _string_ if `allowString` option was set
+-   is an _object_, or (if `allowString` option was set) a _string_
 -   is not a _function_
 -   Exposes `length` as [`array-length` coercible value](#array-lengthcoerce)
 
@@ -345,6 +399,8 @@ ensureArrayLike({}); // Thrown TypeError: null is not an iterable
 
 #### Array length
 
+_number_ primitive that conforms as valid _array length_
+
 ##### `array-length/coerce`
 
 Follows [`safe-integer/coerce`](#safe-integercoerce) but returns `null` in place of values which are below `0`
@@ -359,7 +415,7 @@ coerceToArrayLength(null); // null
 
 ##### `array-length/ensure`
 
-If given argument is a array length coercible value (via [`array-length/coerce`](#array-lengthcoerce)) returns result number.
+If given argument is an _array length_ coercible value (via [`array-length/coerce`](#array-lengthcoerce)) returns result number.
 Otherwise `TypeError` is thrown.
 
 ```javascript
@@ -373,11 +429,11 @@ ensureArrayLength(9007199254740992); // Thrown TypeError: null is not a valid ar
 
 ### Iterable
 
-The JavaScript value which implements _iterable_ protocol
+Value which implements _iterable_ protocol
 
 #### `iterable/is`
 
-Confirms if given object is iterable, but default rejects _strings_, they're accepted if `allowString` option is passed
+Confirms if given object is an _iterable_, with exception to primitive _string_ (unless `allowString` option is passed)
 
 ```javascript
 const isIterable = require("type/iterable/is");
@@ -404,11 +460,11 @@ ensureIterable({}); // Thrown TypeError: null is not a iterable
 
 ### Date
 
-The JavaScript _Date_ instance
+_Date_ instance
 
 #### `date/is`
 
-Confirms if given object is a native date and is not an _Invalid Date_
+Confirms if given object is a native date, and is not an _Invalid Date_
 
 ```javascript
 const isDate = require("type/date/is");
@@ -435,7 +491,7 @@ ensureDate(123123); // Thrown TypeError: 123123 is not a date object
 
 ### Time value
 
-A _time value_ that's used in dates handling
+_number_ primitive which is a valid _time value_ (as used internally in _Date_ instances)
 
 #### `time-value/coerce`
 
@@ -465,7 +521,7 @@ ensureTimeValue(Number.MAX_SAFE_INTEGER); // Thrown TypeError: null is not a nat
 
 ### Function
 
-The JavaScript _Function_ instance
+_Function_ instance
 
 #### `function/is`
 
@@ -496,9 +552,11 @@ ensureFunction(/foo/); // Thrown TypeError: /foo/ is not a function
 
 #### Plain Function
 
+A _Function_ instance that is not a _Class_
+
 ##### `plain-function/is`
 
-Confirms if given object is a native function and is not a class
+Confirms if given object is a plain function
 
 ```javascript
 const isPlainFunction = require("type/plain-function/is");
@@ -525,7 +583,7 @@ ensurePlainFunction(class {}); // Thrown TypeError: class is not a plain functio
 
 ### RegExp
 
-The JavaScript _RegExp_ instance
+_RegExp_ instance
 
 #### `reg-exp/is`
 
@@ -554,7 +612,7 @@ ensureRegExp("foo"); // Thrown TypeError: null is not a regular expression objec
 
 ### Promise
 
-The JavaScript _Promise_ instance
+_Promise_ instance
 
 #### `promise/is`
 
@@ -584,7 +642,7 @@ eensurePromise({}); // Thrown TypeError: [object Object] is not a promise
 
 #### Thenable
 
-The JavaScript _thenable_ object (an object with `then` method)
+Object adhering to the _thenable_ contract (an object with `then` method)
 
 ##### `thenable/is`
 
@@ -614,7 +672,7 @@ ensureThenable({}); // Thrown TypeError: [object Object] is not a thenable objec
 
 ### Error
 
-The JavaScript _Error_ instance
+_Error_ instance
 
 #### `error/is`
 
@@ -643,9 +701,11 @@ ensureError({ mesage: "Fake error" }); // Thrown TypeError: [object Object] is n
 
 ### Prototype
 
-_Prototype_ is assumed to be some constructor's `prototype` property
+Some constructor's `prototype` property
 
 #### `prototype/is`
+
+Confirms if given object is a _prototype_
 
 ```javascript
 const isPrototype = require("type/prototype/is");
