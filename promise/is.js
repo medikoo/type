@@ -10,7 +10,7 @@ var objectToString = Object.prototype.toString
 module.exports = function (value) {
 	if (!value) return false;
 
-	// Sanity check (reject objects which do not expose common Error interface)
+	// Sanity check (reject objects which do not expose common Promise interface)
 	try {
 		if (typeof value.then !== "function") return false;
 		if (typeof value["catch"] !== "function") return false;
