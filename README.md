@@ -1,6 +1,7 @@
 [![*nix build status][nix-build-image]][nix-build-url]
 [![Windows build status][win-build-image]][win-build-url]
 [![Tests coverage][cov-image]][cov-url]
+[![npm version][npm-image]][npm-url]
 
 # type
 
@@ -56,7 +57,7 @@ Value validation. Returns input value (in primitive cases possibly coerced) or i
 Each `*/ensure` utility, accepts following options (eventually passed as second argument):
 
 -   `isOptional` - Makes `null` or `undefined` accepted as valid value. In such case instead of `TypeError` being thrown, `null` is returned.
--   `default` - A value to be returned, if `null` or `undefined` is passed as an input value.
+-   `default` - A value to be returned if `null` or `undefined` is passed as an input value.
 -   `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
 
 ### Value
@@ -736,3 +737,5 @@ isPrototype(Array.prototype); // true
 [win-build-url]: https://ci.appveyor.com/api/project/medikoo/type
 [cov-image]: https://img.shields.io/codecov/c/github/medikoo/type.svg
 [cov-url]: https://codecov.io/gh/medikoo/type
+[npm-image]: https://img.shields.io/npm/v/type.svg
+[npm-url]: https://www.npmjs.com/package/type
