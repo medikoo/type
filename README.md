@@ -12,23 +12,23 @@
 
 ### Example usage
 
-Bulletproof input arguments normalizer and validator:
+Bulletproof input arguments normalization and validation:
 
 ```javascript
-const ensureString = require('type/string/ensure');
-const ensureDate = require('type/date/ensure');
-const ensureNaturalNumber = require('type/natural-number/ensure');
-const isObject = require('type/object/is');
+const ensureString        = require('type/string/ensure')
+    , ensureDate          = require('type/date/ensure')
+    , ensureNaturalNumber = require('type/natural-number/ensure')
+    , isObject            = require('type/object/is');
 
 module.exports = (path, options = { min: 0 }) {
-	path = ensureString(path, { errorMessage: "%v is not a path" });
-	if (!isObject(options)) options = {};
-	const min = ensureNaturalNumber(options.min, { default: 0 });
-	const max = ensureNaturalNumber(options.max, { isOptional: true });
-	const startTime = ensureDate(options.startTime, { isOptional: true });
+  path = ensureString(path, { errorMessage: "%v is not a path" });
+  if (!isObject(options)) options = {};
+  const min = ensureNaturalNumber(options.min, { default: 0 })
+      , max = ensureNaturalNumber(options.max, { isOptional: true })
+      , startTime = ensureDate(options.startTime, { isOptional: true });
 
-	// ...logic
-}
+  // ...logic
+};
 ```
 
 ### Installation
@@ -39,14 +39,25 @@ npm install type
 
 ## Utilities
 
-Serves following kind of utils:
+Serves following kind of utilities:
 
--   `coerce` - Primitive type restricted coercion. Returns coerced value or `null` if value is not coercible per rules.
--   `is` - Object type confirmation, returns either `true` or `false`.
--   `ensure` - Value validation. Returns input value (in primitive cases possibly coerced) or throws `TypeError` if value doesn't meet the constraints. Each `ensure*` util, accepts following options as second argument:
-    -   `isOptional` - accepts `null` or `undefined` as valid value. In such case `null` is returned.
-    -   `default` - if `null` or `undefined` is provided as input, then value passed with this option is send.
-    -   `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
+##### `*/coerce`
+
+Restricted coercion into primitive type. Returns coerced value or `null` if value is not coercible per rules.
+
+##### `*/is`
+
+Object type/kind confirmation, returns either `true` or `false`.
+
+##### `*/ensure`
+
+Value validation. Returns input value (in primitive cases possibly coerced) or if value doesn't meet the constraints throws `TypeError` .
+
+Each `*/ensure` utility, accepts following options (eventually passed as second argument):
+
+-   `isOptional` - Makes `null` or `undefined` accepted as valid value. In such case instead of `TypeError` being thrown, `null` is returned.
+-   `default` - A value to be returned, if `null` or `undefined` is passed as an input value.
+-   `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
 
 ### Value
 
@@ -205,7 +216,7 @@ Otherwise `TypeError` is thrown.
 const ensureFinite = require("type/finite/ensure");
 
 ensureFinite(12); // "12"
-ensureFinite(null); // Thrown TypeError: null is not a number
+ensureFinite(null); // Thrown TypeError: null is not a finite number
 ```
 
 ---
@@ -235,7 +246,7 @@ Otherwise `TypeError` is thrown.
 const ensureInteger = require("type/integer/ensure");
 
 ensureInteger(12.93); // "12"
-ensureInteger(null); // Thrown TypeError: null is not a number
+ensureInteger(null); // Thrown TypeError: null is not an integer
 ```
 
 ---
@@ -363,15 +374,15 @@ ensureArray("foo"); // Thrown TypeError: foo is not an array
 
 #### Array Like
 
-Value adhering to the _array-like_ contract (a value with `length` property)
+_Array-like_ value (any value with `length` property)
 
 #### `array-like/is`
 
 Restricted _array-like_ confirmation. Returns true for every value that meets following contraints
 
--   is an _object_, or (if `allowString` option was set) a _string_
+-   is an _object_ (or if `allowString` option was set a _string_)
 -   is not a _function_
--   Exposes `length` as [`array-length` coercible value](#array-lengthcoerce)
+-   Exposes `length` which meets [`array-length`](#array-lengthcoerce) constraints
 
 ```javascript
 const isArrayLike = require("type/array-like/is");
@@ -385,7 +396,7 @@ isArrayLike("foo", { allowString: true }); // true
 
 #### `array-like/ensure`
 
-If given argument is an array like, it is returned back. Otherwise `TypeError` is thrown.
+If given argument is an _array-like_, it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
 const ensureArrayLike = require("type/array-like/ensure");
@@ -433,7 +444,7 @@ Value which implements _iterable_ protocol
 
 #### `iterable/is`
 
-Confirms if given object is an _iterable_, with exception to primitive _string_ (unless `allowString` option is passed)
+Confirms if given object is an _iterable_ and is not a _string_ (unless `allowString` option is passed)
 
 ```javascript
 const isIterable = require("type/iterable/is");
@@ -446,7 +457,7 @@ isIterable("foo", { allowString: true }); // true
 
 #### `iterable/ensure`
 
-If given argument is an iterable, it is returned back. Otherwise `TypeError` is thrown.
+If given argument is an _iterable_, it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
 const ensureIterable = require("type/iterable/ensure");
@@ -507,7 +518,7 @@ coerceToTimeValue("foo"); // false
 
 ##### `time-value/ensure`
 
-If given argument is a time value coercible value (via [`time-value/coerce`](#time-valuecoerce)) returns result number.
+If given argument is a _time value_ coercible value (via [`time-value/coerce`](#time-valuecoerce)) returns result number.
 Otherwise `TypeError` is thrown.
 
 ```javascript
@@ -556,7 +567,7 @@ A _Function_ instance that is not a _Class_
 
 ##### `plain-function/is`
 
-Confirms if given object is a plain function
+Confirms if given object is a _plain function_
 
 ```javascript
 const isPlainFunction = require("type/plain-function/is");
@@ -569,7 +580,7 @@ isPlainFunction("foo"); // false
 
 ##### `plain-function/ensure`
 
-If given argument is a plain function object, it is returned back. Otherwise `TypeError` is thrown.
+If given argument is a _plain function_ object, it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
 const ensurePlainFunction = require("type/function/ensure");
@@ -642,7 +653,7 @@ eensurePromise({}); // Thrown TypeError: [object Object] is not a promise
 
 #### Thenable
 
-Object adhering to the _thenable_ contract (an object with `then` method)
+_Thenable_ object (an object with `then` method)
 
 ##### `thenable/is`
 
@@ -658,7 +669,7 @@ isThenable({}); // false
 
 ##### `thenable/ensure`
 
-If given argument is a thenable object, it is returned back. Otherwise `TypeError` is thrown.
+If given argument is a _thenable_ object, it is returned back. Otherwise `TypeError` is thrown.
 
 ```javascript
 const ensureThenable = require("type/thenable/ensure");
@@ -705,7 +716,7 @@ Some constructor's `prototype` property
 
 #### `prototype/is`
 
-Confirms if given object is a _prototype_
+Confirms if given object serves as a _prototype_ property
 
 ```javascript
 const isPrototype = require("type/prototype/is");
