@@ -383,9 +383,9 @@ _Array-like_ value (any value with `length` property)
 
 Restricted _array-like_ confirmation. Returns true for every value that meets following contraints
 
--   is an _object_ (or if `allowString` option was set a _string_)
+-   is an _object_ (or with `allowString` option, a _string_)
 -   is not a _function_
--   Exposes `length` which meets [`array-length`](#array-lengthcoerce) constraints
+-   Exposes `length` that meets [`array-length`](#array-lengthcoerce) constraints
 
 ```javascript
 const isArrayLike = require("type/array-like/is");
