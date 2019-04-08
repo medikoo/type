@@ -9,7 +9,7 @@
 
 -   Respects language nature and acknowledges its quirks
 -   Allows coercion in restricted forms (rejects clearly invalid input, normalizes permissible type deviations)
--   No transpilation implied, written to work all ECMAScript 3+ engines
+-   No transpilation implied, written to work in all ECMAScript 3+ engines
 
 ### Example usage
 
