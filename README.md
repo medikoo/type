@@ -60,6 +60,8 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 -   `default` - A value to be returned if `null` or `undefined` is passed as an input value.
 -   `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
 
+---
+
 ### Value
 
 _Value_, any value that's neither `null` nor `undefined` .
