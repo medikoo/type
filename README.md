@@ -9,7 +9,7 @@
 
 -   Respects language nature and acknowledges its quirks
 -   Allows coercion in restricted forms (rejects clearly invalid input, normalizes permissible type deviations)
--   No transpilation implied, provides support for all ECMAScript 3+ engines
+-   No transpilation implied, written to work all ECMAScript 3+ engines
 
 ### Example usage
 
@@ -54,7 +54,7 @@ Object type/kind confirmation, returns either `true` or `false`.
 
 Value validation. Returns input value (in primitive cases possibly coerced) or if value doesn't meet the constraints throws `TypeError` .
 
-Each `*/ensure` utility, accepts following options (eventually passed as second argument):
+Each `*/ensure` utility, accepts following options (eventually passed with second argument):
 
 -   `isOptional` - Makes `null` or `undefined` accepted as valid value. In such case instead of `TypeError` being thrown, `null` is returned.
 -   `default` - A value to be returned if `null` or `undefined` is passed as an input value.
