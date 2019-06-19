@@ -696,7 +696,7 @@ Confirms if given object is a native error object
 const isError = require("type/error/is");
 
 isError(new Error()); // true
-isError({ mesage: "Fake error" }); // false
+isError({ message: "Fake error" }); // false
 ```
 
 #### `error/ensure`
@@ -708,7 +708,7 @@ const ensureError = require("type/error/ensure");
 
 const someError = new Error("Some error");
 ensureError(someError); // someError
-ensureError({ mesage: "Fake error" }); // Thrown TypeError: [object Object] is not an error object
+ensureError({ message: "Fake error" }); // Thrown TypeError: [object Object] is not an error object
 ```
 
 ---
