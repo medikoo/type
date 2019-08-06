@@ -10,7 +10,7 @@
 	"repository": "medikoo/type",
 	"devDependencies": {
 		"chai": "^4.2.0",
-		"eslint": "^5.16.0",
+		"eslint": "^6.1.0",
 		"eslint-config-medikoo": "^2.5.0",
 		"git-list-updated": "^1.2.1",
 		"husky": "^3.0.2",
