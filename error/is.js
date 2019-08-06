@@ -4,7 +4,7 @@ var isPrototype = require("../prototype/is");
 
 var objectToString = Object.prototype.toString;
 
-// Recognized host specific errors (e.g. DOMException)
+// Recognize host specific errors (e.g. DOMException)
 var errorTaggedStringRe = /^\[object .*(?:Error|Exception)\]$/;
 
 module.exports = function (value) {
@@ -17,9 +17,9 @@ module.exports = function (value) {
 		return false;
 	}
 
-	// Ensure its native Error object (has [[ErrorData]] slot)
-	// Note: There seems no 100% bulletproof way of doing that as:
-	// - In ES2015+ string tag can be overriden via Symbol.toStringTag
+	// Ensure its a native Error object (has [[ErrorData]] slot)
+	// Note: There seems no 100% bulletproof way of confirming that as:
+	// - In ES2015+ string tag can be overriden via Symbol.toStringTag property
 	// - Host errors do not share native error tag. Still we rely on assumption that
 	//   tag for each error will end either with `Error` or `Exception` string
 	if (!errorTaggedStringRe.test(objectToString.call(value))) return false;
