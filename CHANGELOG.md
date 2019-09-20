@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/medikoo/type/compare/v1.1.0...v1.2.0) (2019-09-20)
+
+### Bug Fixes
+
+- Improve error message so it's not confusing ([97cd6b9](https://github.com/medikoo/type/commit/97cd6b9))
+
+### Features
+
+- 'coerceItem' option for iterable/ensure ([0818860](https://github.com/medikoo/type/commit/0818860))
+
 ## [1.1.0](https://github.com/medikoo/type/compare/v1.0.3...v1.1.0) (2019-09-20)
 
 ### Features
