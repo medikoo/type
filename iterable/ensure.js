@@ -5,5 +5,5 @@ var resolveException = require("../lib/resolve-exception")
 
 module.exports = function (value/*, options*/) {
 	if (is(value, arguments[1])) return value;
-	return resolveException(value, "%v is not an iterable value", arguments[1]);
+	return resolveException(value, "%v is not expected iterable value", arguments[1]);
 };

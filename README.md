@@ -474,7 +474,7 @@ const ensureIterable = require("type/iterable/ensure");
 
 ensureIterable([]); // []
 ensureIterable("foo", { allowString: true }); // "foo"
-ensureIterable({}); // Thrown TypeError: null is not a iterable
+ensureIterable({}); // Thrown TypeError: null is not expected iterable
 ```
 
 ---

@@ -18,7 +18,7 @@ describe("iterable/ensure", function () {
 			throw new Error("Unexpected");
 		} catch (error) {
 			assert.equal(error.name, "TypeError");
-			assert(error.message.includes("is not an iterable value"));
+			assert(error.message.includes("is not expected iterable value"));
 		}
 	});
 });
