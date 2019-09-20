@@ -458,6 +458,13 @@ isIterable("foo"); // false
 isIterable("foo", { allowString: true }); // true
 ```
 
+Supports also `denyEmpty` option
+
+```javascript
+isIterable([], { denyEmpty: true }); // false
+isIterable(["foo"], { denyEmpty: true }); // true
+```
+
 #### `iterable/ensure`
 
 If given argument is an _iterable_, it is returned back. Otherwise `TypeError` is thrown.

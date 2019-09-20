@@ -11,10 +11,16 @@ if (!iteratorSymbol) {
 }
 
 module.exports = function (value/*, options*/) {
+	var options = arguments[1];
 	if (!isObject(value)) {
-		var options = arguments[1];
 		if (!isObject(options) || !options.allowString || typeof value !== "string") return false;
 	}
-	try { return typeof value[iteratorSymbol] === "function"; }
+	try {
+		if (typeof value[iteratorSymbol] !== "function") return false;
+	} catch (error) {
+		return false;
+	}
+	if (!options || !options.denyEmpty) return true;
+	try { return value[iteratorSymbol]().next().done !== true; }
 	catch (error) { return false; }
 };
