@@ -20,7 +20,13 @@ module.exports = function (value/*, options*/) {
 	} catch (error) {
 		return false;
 	}
-	if (!options || !options.denyEmpty) return true;
-	try { return value[iteratorSymbol]().next().done !== true; }
-	catch (error) { return false; }
+	if (!options) return true;
+	if (options.denyEmpty) {
+		try {
+			if (value[iteratorSymbol]().next().done) return false;
+		} catch (error) {
+			return false;
+		}
+	}
+	return true;
 };
