@@ -477,6 +477,17 @@ ensureIterable("foo", { allowString: true }); // "foo"
 ensureIterable({}); // Thrown TypeError: null is not expected iterable
 ```
 
+Additionally items can be coreced with `coerceItem` option. Note that in this case:
+
+- A newly created array with coerced values is returned
+- Validation crashes if any of the items is not coercible
+
+```javascript
+ensureIterable(new Set(["foo", 12])); // ["foo", "12"]
+
+ensureIterable(new Set(["foo", {}])); // Thrown TypeError: Set({ "foo", {} }) is not expected iterable
+```
+
 ---
 
 ### Date
