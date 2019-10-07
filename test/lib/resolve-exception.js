@@ -28,12 +28,4 @@ describe("lib/handle-exception", function () {
 		// prettier-ignore
 		assert.equal(handleException(null, "%v is invalid", { "default": "bar" }), "bar");
 	});
-	it("Should support custome error message via inputOptions.errorMessage", function () {
-		try {
-			handleException(null, "%v is invalid", { errorMessage: "%v is not supported age" });
-			throw new Error("Unexpected");
-		} catch (error) {
-			assert.equal(error.message, "null is not supported age");
-		}
-	});
 });
