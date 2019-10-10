@@ -468,6 +468,7 @@ isIterable(["foo"], { denyEmpty: true }); // true
 #### `iterable/ensure`
 
 If given argument is an _iterable_, it is returned back. Otherwise `TypeError` is thrown.
+By default _string_ primitives are rejected unless `allowString` option is passed.
 
 ```javascript
 const ensureIterable = require("type/iterable/ensure");
@@ -477,15 +478,33 @@ ensureIterable("foo", { allowString: true }); // "foo"
 ensureIterable({}); // Thrown TypeError: null is not expected iterable
 ```
 
-Additionally items can be coreced with `coerceItem` option. Note that in this case:
+##### Denying empty iterables
 
-- A newly created array with coerced values is returned
-- Validation crashes if any of the items is not coercible
+Pass `denyEmpty` option to require non empty iterables
 
 ```javascript
-ensureIterable(new Set(["foo", 12])); // ["foo", "12"]
+ensureIterable([], { denyEmpty: true }); // Thrown TypeError: [] is not expected iterable
+```
 
-ensureIterable(new Set(["foo", {}])); // Thrown TypeError: Set({ "foo", {} }) is not expected iterable
+##### Confirming on items
+
+Items can be validated by passing `ensureItem` option. Note that in this case:
+
+- A newly created instance of array with coerced values is returned
+- Error message lists up to three invalid items
+
+```javascript
+const ensureString = require("type/string/ensure");
+
+ensureIterable(new Set(["foo", 12]), { ensureItem: ensureString }); // ["foo", "12"]
+
+/*
+ Below invocation with crash with:
+ TypeError: [object Set] is not expected iterable value.
+            Following items are invalid:
+              - [object Object]
+*/
+ensureIterable(new Set(["foo", {}]), { ensureItem: ensureString });
 ```
 
 ---

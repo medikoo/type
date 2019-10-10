@@ -1,7 +1,7 @@
 "use strict";
 
 var assert         = require("chai").assert
-  , coerceString   = require("../../string/coerce")
+  , ensureString   = require("../../string/ensure")
   , isArray        = require("../../array/is")
   , ensureIterable = require("../../iterable/ensure");
 
@@ -23,15 +23,15 @@ describe("iterable/ensure", function () {
 			assert(error.message.includes("is not expected iterable value"));
 		}
 	});
-	describe("Should support 'coerceItem' option", function () {
+	describe("Should support 'ensureItem' option", function () {
 		it("Should resolve coerced array", function () {
-			var coercedValue = ensureIterable(new Set(["foo", 12]), { coerceItem: coerceString });
+			var coercedValue = ensureIterable(new Set(["foo", 12]), { ensureItem: ensureString });
 			assert(isArray(coercedValue));
 			assert.deepEqual(coercedValue, ["foo", "12"]);
 		});
-		it("Should crash if some value is non coercible", function () {
+		it("Should crash if some item is invalid", function () {
 			try {
-				ensureIterable(["foo", {}], { coerceItem: coerceString });
+				ensureIterable(["foo", {}], { ensureItem: ensureString });
 				throw new Error("Unexpected");
 			} catch (error) {
 				assert.equal(error.name, "TypeError");

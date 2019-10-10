@@ -1,29 +1,45 @@
 "use strict";
 
-var resolveException = require("../lib/resolve-exception")
-  , isValue          = require("../value/is")
-  , is               = require("./is");
+var resolveException    = require("../lib/resolve-exception")
+  , resolveErrorMessage = require("../lib/resolve-error-message")
+  , toShortString       = require("../lib/to-short-string")
+  , is                  = require("./is");
 
-var resolveCoercedValue = function (value, coerceItem) {
+var invalidItemsLimit = 3, defaultErrorMessage = "%v is not expected iterable value";
+
+var ensureItems = function (value, options) {
 	var coercedValue = [];
 	var iterator = value[Symbol.iterator]();
-	var item;
+	var ensureItem = options.ensureItem;
+	var item, invalidItems;
 	while (!(item = iterator.next()).done) {
-		var newItemValue = coerceItem(item.value);
-		if (!isValue(newItemValue)) throw new Error("Stop propagation");
+		var newItemValue;
+		try {
+			newItemValue = ensureItem(item.value);
+		} catch (error) {
+			if (!invalidItems) invalidItems = [];
+			if (invalidItems.push(item.value) === invalidItemsLimit) break;
+		}
+		if (invalidItems) continue;
 		coercedValue.push(newItemValue);
 	}
+	if (invalidItems) {
+		var errorMessage =
+			resolveErrorMessage(defaultErrorMessage, value, options) +
+			".\n           Following items are invalid:";
+		for (var i = 0; i < invalidItems.length; ++i) {
+			errorMessage += "\n             - " + toShortString(invalidItems[i]);
+		}
+		throw new TypeError(errorMessage);
+	}
+
 	return coercedValue;
 };
 module.exports = function (value/*, options*/) {
 	var options = arguments[1];
-	if (is(value, options)) {
-		if (!options) return value;
-		if (typeof options.coerceItem !== "function") return value;
-		try { return resolveCoercedValue(value, options.coerceItem); }
-		catch (error) {
-			// Ignore, let validation error propagate
-		}
+	if (!is(value, options)) {
+		return resolveException(value, defaultErrorMessage, options);
 	}
-	return resolveException(value, "%v is not expected iterable value", options);
+	if (!options || typeof options.ensureItem !== "function") return value;
+	return ensureItems(value, options);
 };
