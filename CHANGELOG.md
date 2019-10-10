@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/medikoo/type/compare/v1.2.0...v2.0.0) (2019-10-10)
+
+### Features
+
+- `allowedKeys` option for plain-object/ensure ([f81e72e](https://github.com/medikoo/type/commit/f81e72e))
+- `ensurePropertyValue` option for plain-object/ensure ([c5ff8fb](https://github.com/medikoo/type/commit/c5ff8fb))
+- Replace `coerceItem` with `ensureItem` option in iterable/ensure ([721494f](https://github.com/medikoo/type/commit/721494f))
+- Seclude lib/resolve-error-message ([12636d9](https://github.com/medikoo/type/commit/12636d9))
+- Validate options.ensureItem in iterable/ensure ([78da6c1](https://github.com/medikoo/type/commit/78da6c1))
+
+### BREAKING CHANGES
+
+- iterable/ensure no longer supports `coerceItem` option. Instead `ensureItem` was introduced
+
 ## [1.2.0](https://github.com/medikoo/type/compare/v1.1.0...v1.2.0) (2019-09-20)
 
 ### Bug Fixes
