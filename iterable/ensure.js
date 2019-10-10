@@ -8,37 +8,38 @@ var resolveException    = require("../lib/resolve-exception")
 
 var invalidItemsLimit = 3, defaultErrorMessage = "%v is not expected iterable value";
 
-var ensureItems = function (value, options) {
-	var coercedValue = [];
-	var iterator = value[Symbol.iterator]();
-	var ensureItem = options.ensureItem;
-	var item, invalidItems;
-	while (!(item = iterator.next()).done) {
-		var newItemValue;
-		try {
-			newItemValue = ensureItem(item.value);
-		} catch (error) {
-			if (!invalidItems) invalidItems = [];
-			if (invalidItems.push(item.value) === invalidItemsLimit) break;
-		}
-		if (invalidItems) continue;
-		coercedValue.push(newItemValue);
-	}
-	if (invalidItems) {
-		var errorMessage =
-			resolveErrorMessage(defaultErrorMessage, value, options) +
-			".\n           Following items are invalid:";
-		for (var i = 0; i < invalidItems.length; ++i) {
-			errorMessage += "\n             - " + toShortString(invalidItems[i]);
-		}
-		throw new TypeError(errorMessage);
-	}
-
-	return coercedValue;
-};
 module.exports = function (value/*, options*/) {
 	var options = arguments[1];
 	if (!is(value, options)) return resolveException(value, defaultErrorMessage, options);
-	if (!options || !ensurePlainFunction(options.ensureItem, { isOptional: true })) return value;
-	return ensureItems(value, options);
+	if (!options) return value;
+
+	var ensureItem = ensurePlainFunction(options.ensureItem, { isOptional: true });
+	if (ensureItem) {
+		var coercedValue = [];
+		var iterator = value[Symbol.iterator]();
+		var item, invalidItems;
+		while (!(item = iterator.next()).done) {
+			var newItemValue;
+			try {
+				newItemValue = ensureItem(item.value);
+			} catch (error) {
+				if (!invalidItems) invalidItems = [];
+				if (invalidItems.push(item.value) === invalidItemsLimit) break;
+			}
+			if (invalidItems) continue;
+			coercedValue.push(newItemValue);
+		}
+		if (invalidItems) {
+			var errorMessage =
+				resolveErrorMessage(defaultErrorMessage, value, options) +
+				".\n           Following items are invalid:";
+			for (var i = 0; i < invalidItems.length; ++i) {
+				errorMessage += "\n             - " + toShortString(invalidItems[i]);
+			}
+			throw new TypeError(errorMessage);
+		}
+		return coercedValue;
+	}
+
+	return value;
 };
