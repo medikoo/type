@@ -341,7 +341,7 @@ If given argument is a plain object it is returned back. Otherwise `TypeError` i
 const ensurePlainObject = require("type/plain-object/ensure");
 
 ensurePlainObject({}); // {}
-ensureArray("foo"); // Thrown TypeError: foo is not a plain object
+ensurePlainObject("foo"); // Thrown TypeError: foo is not a plain object
 ```
 
 ---
