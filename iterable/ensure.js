@@ -37,9 +37,7 @@ var ensureItems = function (value, options) {
 };
 module.exports = function (value/*, options*/) {
 	var options = arguments[1];
-	if (!is(value, options)) {
-		return resolveException(value, defaultErrorMessage, options);
-	}
+	if (!is(value, options)) return resolveException(value, defaultErrorMessage, options);
 	if (!options || typeof options.ensureItem !== "function") return value;
 	return ensureItems(value, options);
 };
