@@ -344,6 +344,26 @@ ensurePlainObject({}); // {}
 ensurePlainObject("foo"); // Thrown TypeError: foo is not a plain object
 ```
 
+##### Confirming on keys
+
+Keys can be validated by passing `allowedKeys` option. Note that in this case:
+
+- Error message lists up to three invalid keys
+
+```javascript
+const allowedKeys = ["foo"];
+
+ensurePlainObject({}, { allowedKeys }); // {}
+ensurePlainObject({ foo: "bar" }, { allowedKeys }); // { foo: 'bar' }
+
+/*
+ Below invocation with crash with:
+ TypeError: [object Object] is not a valid plain object.
+            Following keys are unexpected: lorem, ipsum
+*/
+ensurePlainObject({ foo: "bar", lorem: 1, ipsum: 2 }, { allowedKeys });
+```
+
 ---
 
 ### Array
