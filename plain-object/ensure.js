@@ -53,7 +53,7 @@ module.exports = function (value/*, options*/) {
 		if (invalidKeys) {
 			errorMessage =
 				resolveErrorMessage(defaultErrorMessage, value, options) +
-				".\n           Valuees for following keys are invalid: " +
+				".\n           Values for following keys are invalid: " +
 				invalidKeys.join(", ");
 			throw new TypeError(errorMessage);
 		}
