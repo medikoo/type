@@ -2,6 +2,7 @@
 
 var resolveException    = require("../lib/resolve-exception")
   , resolveErrorMessage = require("../lib/resolve-error-message")
+  , ensurePlainFunction = require("../plain-function/ensure")
   , ensureArray         = require("../array/ensure")
   , is                  = require("./is");
 
@@ -14,22 +15,50 @@ module.exports = function (value/*, options*/) {
 	if (!is(value)) return resolveException(value, defaultErrorMessage, options);
 	if (!options) return value;
 
+	var invalidKeys, key, errorMessage;
 	var allowedKeys = ensureArray(options.allowedKeys, { isOptional: true });
 	if (allowedKeys) {
-		var invalidKeys;
-		for (var key in value) {
+		for (key in value) {
 			if (!objHasOwnProperty.call(value, key)) continue;
 			if (allowedKeys.indexOf(key) > -1) continue;
 			if (!invalidKeys) invalidKeys = [];
 			if (invalidKeys.push(key) === invalidItemsLimit) break;
 		}
 		if (invalidKeys) {
-			var errorMessage =
+			errorMessage =
 				resolveErrorMessage(defaultErrorMessage, value, options) +
 				".\n           Following keys are unexpected: " +
 				invalidKeys.join(", ");
 			throw new TypeError(errorMessage);
 		}
+	}
+
+	var ensurePropertyValue = ensurePlainFunction(options.ensurePropertyValue, {
+		isOptional: true
+	});
+	if (ensurePropertyValue) {
+		var coercedValue = {};
+		for (key in value) {
+			if (!objHasOwnProperty.call(value, key)) continue;
+			var coercedPropertyValue;
+			try {
+				coercedPropertyValue = ensurePropertyValue(value[key]);
+			} catch (error) {
+				if (!invalidKeys) invalidKeys = [];
+				if (invalidKeys.push(key) === invalidItemsLimit) break;
+			}
+			if (invalidKeys) continue;
+			coercedValue[key] = coercedPropertyValue;
+		}
+		if (invalidKeys) {
+			errorMessage =
+				resolveErrorMessage(defaultErrorMessage, value, options) +
+				".\n           Valuees for following keys are invalid: " +
+				invalidKeys.join(", ");
+			throw new TypeError(errorMessage);
+		}
+
+		return coercedValue;
 	}
 
 	return value;
