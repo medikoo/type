@@ -11,6 +11,12 @@
 - Allows coercion in restricted forms (rejects clearly invalid input, normalizes permissible type deviations)
 - No transpilation implied, written to work in all ECMAScript 3+ engines
 
+## Use case
+
+Validate arguments input in public API endpoints.
+
+_For validation of more sophisticated input structures (as deeply nested configuration objects) it's recommended to consider more powerful schema based utlities (as [AJV](https://ajv.js.org/) or [@hapi/joi](https://hapi.dev/family/joi/))_
+
 ### Example usage
 
 Bulletproof input arguments normalization and validation:
