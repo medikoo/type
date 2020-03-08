@@ -64,7 +64,10 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 
 - `isOptional` - Makes `null` or `undefined` accepted as valid value. In such case instead of `TypeError` being thrown, `null` is returned.
 - `default` - A value to be returned if `null` or `undefined` is passed as an input value.
-- `errorMessage` - Custom error message (`%v` can be used as a placeholder for input value)
+- `errorMessage` - Custom error message. Following placeholders can be used:
+  - `%v` - To be replaced with short string representation of invalid value
+  - `%n` - To be replaced with meaninfgul name (to be passed with `name` option) of validated value. Not effective if `name` option is not present
+- `name` - Meaningful name for validated value, to be used in error message, assuming it contains `%n` placeholder
 
 ### Index
 
