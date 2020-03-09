@@ -46,7 +46,7 @@ npm install type
 
 ## Utilities
 
-Following kind of utilities are provided:
+Aside of general [`ensure`](docs/ensure.md) validation util, following kind of utilities for recognized JavaScript types are provided:
 
 ##### `*/coerce`
 
@@ -70,6 +70,12 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 - `name` - Meaningful name for validated value, to be used in error message, assuming it contains `%n` placeholder
 
 ### Index
+
+#### General utils:
+
+- [`ensure`](docs/ensure.md)
+
+#### Type specific utils:
 
 - **Value**
   - [`value/is`](docs/value.md#valueis)
