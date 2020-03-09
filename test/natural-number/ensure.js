@@ -16,4 +16,13 @@ describe("natural-number/ensure", function () {
 			assert.equal(error.message, "-20 is not a natural number");
 		}
 	});
+	it("Should provide alternative error message when name option is passed", function () {
+		try {
+			ensureNaturalNumber(-20, { name: "name" });
+			throw new Error("Unexpected");
+		} catch (error) {
+			assert.equal(error.name, "TypeError");
+			assert.equal(error.message, "Expected a natural number for name, received -20");
+		}
+	});
 });
