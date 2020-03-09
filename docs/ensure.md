@@ -1,4 +1,4 @@
-## `ensure(validationDatum1[, ...validationDatumN[, options]])`
+# `ensure(validationDatum1[, ...validationDatumN[, options]])`
 
 Provides a complete cumulated input validation for an API endpoint. Validates multiple input arguments and consolidates eventual errors into one.
 
