@@ -25,4 +25,13 @@ describe("natural-number/ensure", function () {
 			assert.equal(error.message, "Expected a natural number for name, received -20");
 		}
 	});
+	it("Should support min validation", function () {
+		try {
+			ensureNaturalNumber(2, { min: 3 });
+			throw new Error("Unexpected");
+		} catch (error) {
+			assert.equal(error.name, "TypeError");
+			assert.equal(error.message, "2 is not greater or equal 3");
+		}
+	});
 });
