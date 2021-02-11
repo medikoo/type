@@ -23,7 +23,7 @@ describe("lib/safe-to-string", function () {
 	if (typeof Symbol === "function") {
 		it("Should coerce symbols", function () {
 			// eslint-disable-next-line no-undef
-			assert.equal(safeToString(Symbol()), "Symbol()");
+			assert.equal(safeToString(Symbol("test")), "Symbol(test)");
 		});
 	}
 	it("Should return null for non coercible values", function () {

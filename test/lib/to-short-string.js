@@ -23,7 +23,7 @@ describe("lib/to-short-string", function () {
 	if (typeof Symbol === "function") {
 		it("Should coerce symbols", function () {
 			// eslint-disable-next-line no-undef
-			assert.equal(toShortString(Symbol()), "Symbol()");
+			assert.equal(toShortString(Symbol("test")), "Symbol(test)");
 		});
 	}
 	it("Should return replacement non coercible values", function () {

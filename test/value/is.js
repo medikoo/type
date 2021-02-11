@@ -21,7 +21,9 @@ describe("value/is", function () {
 	it("Should return true on boolean", function () { assert.equal(isValue(false), true); });
 	if (typeof Symbol === "function") {
 		// eslint-disable-next-line no-undef
-		it("Should return true on symbol", function () { assert.equal(isValue(Symbol()), true); });
+		it("Should return true on symbol", function () {
+			assert.equal(isValue(Symbol(test)), true);
+		});
 	}
 
 	it("Should return false on null", function () { assert.equal(isValue(null), false); });
