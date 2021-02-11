@@ -1,7 +1,8 @@
 "use strict";
 
-var assert      = require("chai").assert
-  , ensureArray = require("../../array/ensure");
+var assert       = require("chai").assert
+  , ensureString = require("../../string/ensure")
+  , ensureArray  = require("../../array/ensure");
 
 describe("array/ensure", function () {
 	it("Should return input value", function () {
@@ -24,6 +25,17 @@ describe("array/ensure", function () {
 		} catch (error) {
 			assert.equal(error.name, "TypeError");
 			assert.equal(error.message, "Expected an array for name, received null");
+		}
+	});
+
+	it("Should support ensureItem option", function () {
+		assert.deepEqual(ensureArray(["bar", 12], { ensureItem: ensureString }), ["bar", "12"]);
+		try {
+			ensureArray(["bar", {}], { ensureItem: ensureString });
+			throw new Error("Unexpected");
+		} catch (error) {
+			assert.equal(error.name, "TypeError");
+			assert.equal(error.message.indexOf("is not an array") !== -1, true);
 		}
 	});
 });
