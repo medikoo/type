@@ -22,7 +22,7 @@ describe("value/is", function () {
 	if (typeof Symbol === "function") {
 		// eslint-disable-next-line no-undef
 		it("Should return true on symbol", function () {
-			assert.equal(isValue(Symbol(test)), true);
+			assert.equal(isValue(Symbol("test")), true);
 		});
 	}
 
