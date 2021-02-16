@@ -119,6 +119,9 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 - **Iterable**
   - [`iterable/is`](docs/iterable.md#iterableis)
   - [`iterable/ensure`](docs/iterable.md#iterableensure)
+- **Map**
+  - [`map/is`](docs/map.md#mapis)
+  - [`map/ensure`](docs/map.md#mapensure)
 - **Date**
   - [`date/is`](docs/date.md#dateis)
   - [`date/ensure`](docs/date.md#dateensure)
