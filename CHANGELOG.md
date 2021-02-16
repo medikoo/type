@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/medikoo/type/compare/v2.2.0...v2.3.0) (2021-02-16)
+
+### Features
+
+- `map/is` and `map/ensure` utils ([aafd1cb](https://github.com/medikoo/type/commit/aafd1cbd8c888fda98d39fd17e59f38b078d7bcf))
+
 ## [2.2.0](https://github.com/medikoo/type/compare/v2.1.0...v2.2.0) (2021-02-11)
 
 ### Features
