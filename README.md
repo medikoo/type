@@ -67,6 +67,7 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 - `errorMessage` - Custom error message. Following placeholders can be used:
   - `%v` - To be replaced with short string representation of invalid value
   - `%n` - To be replaced with meaninfgul name (to be passed with `name` option) of validated value. Not effective if `name` option is not present
+- `errorCode` - Eventual error code to be exposed on `.code` error property
 - `name` - Meaningful name for validated value, to be used in error message, assuming it contains `%n` placeholder
 - `Error` - Alternative error constructor to be used (defaults to `TypeError`)
 

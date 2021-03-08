@@ -37,4 +37,12 @@ describe("lib/handle-exception", function () {
 			assert.equal(error.message, "Invalid value");
 		}
 	});
+	it("Should support error code option", function () {
+		try {
+			handleException(12, "Invalid value", { errorCode: "SOME_CODE" });
+			throw new Error("Unexpected");
+		} catch (error) {
+			assert.equal(error.code, "SOME_CODE");
+		}
+	});
 });
