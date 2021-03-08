@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/medikoo/type/compare/v2.4.0...v2.5.0) (2021-03-08)
+
+### Features
+
+- `errorCode` option for `ensure*` utils ([777a1f2](https://github.com/medikoo/type/commit/777a1f2c9fd76defcd24d3a30cce49491947fef7))
+
 ## [2.4.0](https://github.com/medikoo/type/compare/v2.3.0...v2.4.0) (2021-03-08)
 
 ### Features
