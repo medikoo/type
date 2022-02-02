@@ -133,6 +133,9 @@ Each `*/ensure` utility, accepts following options (eventually passed with secon
 - **Function**
   - [`function/is`](docs/function.md#functionis)
   - [`function/ensure`](docs/function.md#functionensure)
+  - **Constructor**
+    - [`constructor/is`](docs/constructor.md#plain-functionis)
+    - [`constructor/ensure`](docs/constructor.md#plain-functionensure)
   - **Plain Function**
     - [`plain-function/is`](docs/plain-function.md#plain-functionis)
     - [`plain-function/ensure`](docs/plain-function.md#plain-functionensure)
