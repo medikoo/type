@@ -18,7 +18,7 @@ module.exports = function (value) {
 		return false;
 	}
 
-	// Ensure its native Promise object (has [[SetData]] slot)
+	// Ensure its native Set object (has [[SetData]] slot)
 	// Note: it's not 100% precise as string tag may be overriden
 	// and other objects could be hacked to expose it
 	if (objectToString.call(value) !== objectTaggedString) return false;
