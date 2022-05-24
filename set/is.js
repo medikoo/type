@@ -9,7 +9,7 @@ var objectToString = Object.prototype.toString, objectTaggedString = objectToStr
 module.exports = function (value) {
 	if (!value) return false;
 
-	// Sanity check (reject objects which do not expose common Promise interface)
+	// Sanity check (reject objects which do not expose common Set interface)
 	try {
 		if (typeof value.add !== "function") return false;
 		if (typeof value.has !== "function") return false;
