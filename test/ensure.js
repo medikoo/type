@@ -18,14 +18,6 @@ describe("ensure", function () {
 			assert.equal(error.message, "Expected a number for foo, received null");
 		}
 	});
-	it("Should surface only error", function () {
-		try {
-			ensure(["foo", null, ensureNumber], ["bar", 10, ensureNumber]);
-		} catch (error) {
-			assert.equal(error.name, "TypeError");
-			assert.equal(error.message, "Expected a number for foo, received null");
-		}
-	});
 	it("Should cumulate errors", function () {
 		try {
 			ensure(["foo", null, ensureNumber], ["bar", NaN, ensureNumber]);
