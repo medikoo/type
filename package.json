@@ -20,6 +20,13 @@
 		"nyc": "^15.1.0",
 		"prettier-elastic": "^2.1.2"
 	},
+	"typesVersions": {
+		">=4": {
+			"*": [
+				"ts-types/*"
+			]
+		}
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"
