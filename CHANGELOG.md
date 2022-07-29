@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/medikoo/type/compare/v2.6.0...v2.6.1) (2022-07-29)
+
+### Maintenance Improvements
+
+- Declare TS types ([#6](https://github.com/medikoo/type/issues/6)) ([6378e2c](https://github.com/medikoo/type/commit/6378e2c457670bcb8a9b898e0f2502ed5b942d44)) ([Marco](https://github.com/borracciaBlu))
+
 ## [2.6.0](https://github.com/medikoo/type/compare/v2.5.0...v2.6.0) (2022-02-02)
 
 ### Features
