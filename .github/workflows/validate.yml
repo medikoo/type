@@ -11,4 +11,4 @@ env:
 
 jobs:
   _:
-    uses: medikoo/github-actions-workflows/.github/workflows/6-validate.yml@main
+    uses: medikoo/github-actions-workflows/.github/workflows/10-validate.yml@main
