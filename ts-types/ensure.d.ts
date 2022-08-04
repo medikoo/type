@@ -1,12 +1,20 @@
 export type EnsureFunction = (...args: any[]) => any;
-export interface EnsureOptions {
+export interface EnsureBaseOptions {
 	name?: string;
-	isOptional?: boolean;
-	default?: any;
 	errorMessage?: string;
 	errorCode?: number;
 	Error?: ErrorConstructor;
 }
+
+export interface EnsureIsOptional {
+	isOptional?: boolean;
+}
+
+export interface EnsureDefault<T> {
+	default?: T;
+}
+
+type EnsureOptions = EnsureBaseOptions & EnsureIsOptional & EnsureDefault<any>;
 
 type ValidationDatum = [argumentName: string, inputValue: any, ensureFunction: EnsureFunction, options?: object];
 type ValidationDatumList = ValidationDatum[];

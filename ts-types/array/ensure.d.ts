@@ -1,6 +1,9 @@
-import { EnsureFunction, EnsureOptions } from '../ensure';
+import { EnsureFunction,  EnsureBaseOptions, EnsureIsOptional, EnsureDefault } from '../ensure';
 
-type EnsureArrayOptions = { ensureItem?: EnsureFunction } | EnsureOptions;
+type EnsureArrayOptions = { ensureItem?: EnsureFunction };
 
-declare function ensureArray<T>(value: any, options?: EnsureArrayOptions): T[];
+
+declare function ensureArray<T>(value: any, options?: EnsureArrayOptions & EnsureBaseOptions & EnsureIsOptional): T[] | null;
+declare function ensureArray<T>(value: any, options?: EnsureArrayOptions & EnsureBaseOptions & EnsureIsOptional & EnsureDefault<T[]>): T[];
+
 export default ensureArray;

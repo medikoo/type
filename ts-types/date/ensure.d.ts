@@ -1,4 +1,6 @@
-import { EnsureOptions } from '../ensure';
+import { EnsureBaseOptions, EnsureIsOptional, EnsureDefault } from '../ensure';
 
-declare function ensureDate(value: any, options?: EnsureOptions): Date;
+declare function ensureDate(value: any, options?: EnsureBaseOptions & EnsureIsOptional): Date | null;
+declare function ensureDate(value: any, options?: EnsureBaseOptions & EnsureIsOptional & EnsureDefault<Date>): Date;
+
 export default ensureDate;
