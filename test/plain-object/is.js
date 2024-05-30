@@ -11,10 +11,9 @@ describe("plain-object/is", function () {
 		it("Should return true on object with no prototype", function () {
 			assert.equal(isPlainObject(Object.create(null)), true);
 		});
-		it(
-			"Should return false on object that inherits from object with no prototype",
-			function () { assert.equal(isPlainObject(Object.create(Object.create(null))), false); }
-		);
+		it("Should return false on object that inherits from object with no prototypes", function () {
+			assert.equal(isPlainObject(Object.create(Object.create(null))), false);
+		});
 	}
 	it("Should return false on Object.prototype", function () {
 		assert.equal(isPlainObject(Object.prototype), false);

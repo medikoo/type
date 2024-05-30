@@ -6,9 +6,9 @@ var assert       = require("chai").assert
 
 describe("ensure", function () {
 	it("Should support multiple validation datums", function () {
-		assert.deepEqual(ensure(["foo", 12.323, ensureNumber], ["bar", 10, ensureNumber]), [
-			12.323, 10
-		]);
+		assert.deepEqual(
+			ensure(["foo", 12.323, ensureNumber], ["bar", 10, ensureNumber]), [12.323, 10]
+		);
 	});
 	it("Should surface only error", function () {
 		try {

@@ -3,7 +3,7 @@
 var resolveException = require("../lib/resolve-exception")
   , is               = require("./is");
 
-module.exports = function (value /*, options*/) {
+module.exports = function (value/*, options*/) {
 	if (is(value)) return value;
 	var options = arguments[1];
 	var errorMessage =

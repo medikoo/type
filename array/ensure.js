@@ -8,7 +8,7 @@ var resolveException    = require("../lib/resolve-exception")
 
 var objHasOwnProperty = Object.prototype.hasOwnProperty, invalidItemsLimit = 3;
 
-module.exports = function (value /*, options*/) {
+module.exports = function (value/*, options*/) {
 	var options = arguments[1];
 	var mainErrorMessage =
 		options && options.name ? "Expected an array for %n, received %v" : "%v is not an array";
