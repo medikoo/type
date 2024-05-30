@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.3](https://github.com/medikoo/type/compare/v2.7.2...v2.7.3) (2024-05-30)
+
+### Maintenance Improvements
+
+- Add security vulnerability policy ([a28cc58](https://github.com/medikoo/type/commit/a28cc586882ee8b1f0af6789b5af927cc4f14227))
+- Prettify ([aaa9256](https://github.com/medikoo/type/commit/aaa92561a812d756ece952e1afade7d4aa0f116c))
+- Upgrade `prettier-elastic` to v3 ([7f10b2c](https://github.com/medikoo/type/commit/7f10b2c995bb590903b2d3d2c1eacfd7e045d73b))
+
 ### [2.7.2](https://github.com/medikoo/type/compare/v2.7.1...v2.7.2) (2022-08-05)
 
 ### Maintenance Improvements
